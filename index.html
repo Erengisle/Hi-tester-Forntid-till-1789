@@ -546,7 +546,8 @@ let currentQ = 0;
 let answers = [];
 
 // ── AUTH ─────────────────────────────────────────────────
-db.auth.onAuthStateChange(async (_event, session) => {
+db.auth.onAuthStateChange(async (event, session) => {
+  console.log('[AUTH]', event, session?.user?.email ?? 'no user');
   if (session?.user) {
     currentUser = session.user;
     document.getElementById('user-name').textContent = session.user.user_metadata?.full_name || session.user.email;
@@ -558,6 +559,16 @@ db.auth.onAuthStateChange(async (_event, session) => {
     show('login');
   }
 });
+
+// Kontrollera också URL-hash manuellt (fallback för implicit flow)
+(async () => {
+  const hash = window.location.hash;
+  if (hash.includes('access_token')) {
+    console.log('[AUTH] access_token detected in URL hash');
+    const { data, error } = await db.auth.getSession();
+    console.log('[AUTH] getSession after hash:', data?.session?.user?.email, error);
+  }
+})();
 
 async function signInWithGoogle() {
   await db.auth.signInWithOAuth({
