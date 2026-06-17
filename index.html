@@ -544,6 +544,8 @@ let currentUser = null;
 let currentQuiz = null;
 let currentQ = 0;
 let answers = [];
+let shuffledOpts = [];
+let shuffledCorrect = 0;
 
 // ── AUTH ─────────────────────────────────────────────────
 db.auth.onAuthStateChange(async (event, session) => {
@@ -645,13 +647,18 @@ function renderQuestion() {
   const total = currentQuiz.questions.length;
   const letters = ['A','B','C','D'];
 
+  // Shuffle options, track where the correct answer lands
+  const indices = q.opts.map((_, i) => i).sort(() => Math.random() - 0.5);
+  shuffledOpts = indices.map(i => q.opts[i]);
+  shuffledCorrect = indices.indexOf(q.correct);
+
   document.getElementById('progress-bar').style.width = ((currentQ / total) * 100) + '%';
   document.getElementById('question-counter').textContent = `Fråga ${currentQ + 1} av ${total}`;
   document.getElementById('question-text').textContent = q.q;
   document.getElementById('next-btn').classList.remove('visible');
 
   const c = document.getElementById('options-container');
-  c.innerHTML = q.opts.map((opt, i) => `
+  c.innerHTML = shuffledOpts.map((opt, i) => `
     <div class="option" id="opt-${i}" onclick="pickAnswer(${i})">
       <span class="option-letter">${letters[i]}</span>
       <span>${opt}</span>
@@ -661,20 +668,20 @@ function renderQuestion() {
 
 function pickAnswer(idx) {
   const q = currentQuiz.questions[currentQ];
-  const isCorrect = idx === q.correct;
+  const isCorrect = idx === shuffledCorrect;
 
   answers.push({
     question_text: q.q,
-    chosen_option: q.opts[idx],
-    correct_option: q.opts[q.correct],
+    chosen_option: shuffledOpts[idx],
+    correct_option: shuffledOpts[shuffledCorrect],
     is_correct: isCorrect
   });
 
   // Lock all options
-  for (let i = 0; i < q.opts.length; i++) {
+  for (let i = 0; i < shuffledOpts.length; i++) {
     const el = document.getElementById('opt-' + i);
     el.classList.add('locked');
-    if (i === q.correct) el.classList.add('correct');
+    if (i === shuffledCorrect) el.classList.add('correct');
     else if (i === idx) el.classList.add('wrong');
   }
 
