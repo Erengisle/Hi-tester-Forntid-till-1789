@@ -536,7 +536,9 @@ const QUIZZES = [
 
 // ── SUPABASE ─────────────────────────────────────────────
 const { createClient } = supabase;
-const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+const db = createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: { flowType: 'implicit' }
+});
 
 let currentUser = null;
 let currentQuiz = null;
