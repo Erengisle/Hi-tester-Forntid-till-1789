@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lärarpanel – Historietest</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #1a1612;
+      --surface: #242018;
+      --surface2: #2e2820;
+      --border: #3d3528;
+      --gold: #c9a84c;
+      --gold-dim: #8a6e2f;
+      --text: #e8dfc8;
+      --text-dim: #9a8f78;
+      --correct: #4a7c3f;
+      --correct-bg: #1e3019;
+      --wrong-bg: #301919;
+      --radius: 8px;
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --font-body: system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+    .logo span {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      display: block;
+      font-family: var(--font-body);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .signout-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .signout-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      padding: 2rem 1.5rem;
+      flex: 1;
+    }
+
+    /* LOGIN */
+    #screen-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+
+    .login-sub {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 360px;
+      line-height: 1.6;
+    }
+
+    .login-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: border-color 0.15s;
+    }
+    .login-btn:hover { border-color: var(--gold); }
+
+    .google-icon { width: 20px; height: 20px; }
+
+    /* DASHBOARD */
+    #screen-dashboard { display: none; }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .page-sub {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+    }
+
+    /* STAT CARDS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+    }
+
+    .stat-card .val {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-card .lbl {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* FILTERS */
+    .filter-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-row select, .filter-row input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .filter-row select:focus, .filter-row input:focus {
+      outline: none;
+      border-color: var(--gold-dim);
+    }
+
+    .export-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .export-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    /* SECTION HEADER */
+    .section-header {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* STUDENT TABLE */
+    .student-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .student-table th {
+      text-align: left;
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 0.75rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+    }
+    .student-table th:hover { color: var(--text); }
+    .student-table th .sort-arrow { margin-left: 4px; opacity: 0.4; }
+    .student-table th.sorted .sort-arrow { opacity: 1; color: var(--gold); }
+
+    .student-table td {
+      padding: 0.7rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .student-table tr:hover td { background: var(--surface2); cursor: pointer; }
+    .student-table tr.expanded td { background: var(--surface2); }
+
+    .pct-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .pct-high { background: var(--correct-bg); color: #8dcc81; border: 1px solid var(--correct); }
+    .pct-mid  { background: #2e2810; color: #c9b54c; border: 1px solid #5a4e1a; }
+    .pct-low  { background: var(--wrong-bg); color: #cc8181; border: 1px solid #5a1a1a; }
+
+    /* DETAIL ROW */
+    .detail-row td {
+      padding: 0 0.75rem 0.75rem;
+      background: var(--surface2) !important;
+    }
+
+    .session-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      padding: 6px 10px;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .session-item .sname { color: var(--text); min-width: 220px; }
+    .session-item .sdate { min-width: 110px; }
+    .session-item .sscore { color: var(--gold); font-weight: 500; }
+
+    /* QUIZ BREAKDOWN */
+    .quiz-breakdown {
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .quiz-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .quiz-stat-row .qname { flex: 1; color: var(--text); }
+    .quiz-stat-row .qcount { color: var(--text-dim); min-width: 80px; text-align: right; }
+    .quiz-stat-row .qavg { color: var(--gold); min-width: 60px; text-align: right; font-weight: 600; }
+
+    .bar-wrap { flex: 2; background: var(--surface2); border-radius: 999px; height: 6px; }
+    .bar-fill { background: var(--gold); height: 6px; border-radius: 999px; }
+
+    .empty { color: var(--text-dim); font-size: 0.88rem; padding: 1rem 0; }
+    .loading { color: var(--text-dim); font-size: 0.88rem; padding: 1.5rem 0; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .student-table th:nth-child(4),
+      .student-table td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    Lärarpanel
+    <span>Historietest – Forntid till 1789</span>
+  </div>
+  <div class="user-info" id="user-info" style="display:none">
+    <span id="user-name"></span>
+    <button class="signout-btn" onclick="signOut()">Logga ut</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- LOGIN -->
+  <div id="screen-login">
+    <div class="login-title">Lärarpanel</div>
+    <div class="login-sub">Logga in med ditt Google-konto för att se elevernas resultat.</div>
+    <button class="login-btn" onclick="signIn()">
+      <svg class="google-icon" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.8 0 6.9 5.4 2.9 13.3l7.8 6.1C12.5 13.2 17.8 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/>
+        <path fill="#FBBC05" d="M10.7 28.6A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.1.7-4.6l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.8l8.2-6.2z"/>
+        <path fill="#34A853" d="M24 48c6.2.0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.2 0-11.5-4.2-13.4-9.9l-8.2 6.2C6.9 42.6 14.8 48 24 48z"/>
+      </svg>
+      Logga in med Google
+    </button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="screen-dashboard">
+    <div class="page-title">Resultatöversikt</div>
+    <div class="page-sub" id="last-updated"></div>
+
+    <!-- STAT CARDS -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="val" id="stat-students">–</div><div class="lbl">Elever</div></div>
+      <div class="stat-card"><div class="val" id="stat-sessions">–</div><div class="lbl">Genomförda tester</div></div>
+      <div class="stat-card"><div class="val" id="stat-avg">–</div><div class="lbl">Snittresultat</div></div>
+      <div class="stat-card"><div class="val" id="stat-today">–</div><div class="lbl">Gjorda idag</div></div>
+    </div>
+
+    <!-- QUIZ BREAKDOWN -->
+    <div class="quiz-breakdown">
+      <div class="section-header"><span>Per quiz</span></div>
+      <div id="quiz-breakdown-container"><div class="loading">Laddar…</div></div>
+    </div>
+
+    <!-- STUDENT TABLE -->
+    <div class="section-header">
+      <span>Per elev</span>
+    </div>
+
+    <div class="filter-row">
+      <input type="text" id="search-input" placeholder="Sök elev…" oninput="filterTable()" />
+      <select id="quiz-filter" onchange="filterTable()">
+        <option value="">Alla tester</option>
+      </select>
+      <button class="export-btn" onclick="exportCSV()">↓ Exportera CSV</button>
+    </div>
+
+    <table class="student-table" id="student-table">
+      <thead>
+        <tr>
+          <th onclick="sortBy('name')">Namn <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('quiz')">Test <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('pct')">Resultat <span class="sort-arrow">↕</span></th>
+          <th onclick="sortBy('date')">Datum <span class="sort-arrow">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+  </div>
+
+</main>
+
+<script>
+const SUPABASE_URL  = 'https://dkisazpnzyqmcacdlnsk.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRraXNhenBuenlxbWNhY2RsbnNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzE1MDAsImV4cCI6MjA5NzIwNzUwMH0.e7TGqXuv9bTbyGJ8xA3lzjjiNQhmvLEYzTxntF0PjwY';
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let allRows = [];
+let sortCol = 'date';
+let sortDir = -1;
+let expandedEmail = null;
+
+db.auth.onAuthStateChange(async (_e, session) => {
+  if (session?.user) {
+    document.getElementById('user-name').textContent = session.user.user_metadata?.full_name || session.user.email;
+    document.getElementById('user-info').style.display = 'flex';
+    document.getElementById('screen-login').style.display = 'none';
+    document.getElementById('screen-dashboard').style.display = 'block';
+    await loadData();
+  } else {
+    document.getElementById('screen-login').style.display = 'flex';
+    document.getElementById('screen-dashboard').style.display = 'none';
+    document.getElementById('user-info').style.display = 'none';
+  }
+});
+
+async function signIn() {
+  await db.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
+}
+
+async function signOut() {
+  await db.auth.signOut();
+}
+
+async function loadData() {
+  // Fetch sessions with profile info
+  const { data: sessions, error } = await db
+    .from('quiz_sessions')
+    .select('id, quiz_name, score, max_score, completed_at, profiles(email, full_name)')
+    .order('completed_at', { ascending: false });
+
+  if (error) { console.error(error); return; }
+
+  allRows = (sessions || []).map(s => ({
+    id: s.id,
+    email: s.profiles?.email || '?',
+    name: s.profiles?.full_name || s.profiles?.email || '?',
+    quiz: s.quiz_name,
+    score: s.score,
+    max: s.max_score,
+    pct: Math.round(s.score / s.max_score * 100),
+    date: s.completed_at
+  }));
+
+  renderStats();
+  renderQuizBreakdown();
+  populateQuizFilter();
+  renderTable(allRows);
+
+  document.getElementById('last-updated').textContent =
+    'Uppdaterad ' + new Date().toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+}
+
+function renderStats() {
+  const students = new Set(allRows.map(r => r.email)).size;
+  const avg = allRows.length
+    ? Math.round(allRows.reduce((a, r) => a + r.pct, 0) / allRows.length)
+    : 0;
+  const today = allRows.filter(r => {
+    const d = new Date(r.date);
+    const n = new Date();
+    return d.toDateString() === n.toDateString();
+  }).length;
+
+  document.getElementById('stat-students').textContent = students;
+  document.getElementById('stat-sessions').textContent = allRows.length;
+  document.getElementById('stat-avg').textContent = avg + '%';
+  document.getElementById('stat-today').textContent = today;
+}
+
+function renderQuizBreakdown() {
+  const map = {};
+  allRows.forEach(r => {
+    if (!map[r.quiz]) map[r.quiz] = { count: 0, total: 0 };
+    map[r.quiz].count++;
+    map[r.quiz].total += r.pct;
+  });
+
+  const c = document.getElementById('quiz-breakdown-container');
+  if (!Object.keys(map).length) { c.innerHTML = '<div class="empty">Inga resultat än.</div>'; return; }
+
+  c.innerHTML = Object.entries(map).map(([name, d]) => {
+    const avg = Math.round(d.total / d.count);
+    return `<div class="quiz-stat-row">
+      <div class="qname">${name}</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${avg}%"></div></div>
+      <div class="qavg">${avg}%</div>
+      <div class="qcount">${d.count} svar</div>
+    </div>`;
+  }).join('');
+}
+
+function populateQuizFilter() {
+  const names = [...new Set(allRows.map(r => r.quiz))];
+  const sel = document.getElementById('quiz-filter');
+  names.forEach(n => {
+    const o = document.createElement('option');
+    o.value = n; o.textContent = n;
+    sel.appendChild(o);
+  });
+}
+
+function filterTable() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const qf = document.getElementById('quiz-filter').value;
+  const filtered = allRows.filter(r =>
+    (!q || r.name.toLowerCase().includes(q) || r.email.toLowerCase().includes(q)) &&
+    (!qf || r.quiz === qf)
+  );
+  renderTable(filtered);
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  document.querySelectorAll('.student-table th').forEach(th => th.classList.remove('sorted'));
+  event.currentTarget.classList.add('sorted');
+  filterTable();
+}
+
+function renderTable(rows) {
+  const sorted = [...rows].sort((a, b) => {
+    let av = a[sortCol], bv = b[sortCol];
+    if (sortCol === 'date') { av = new Date(av); bv = new Date(bv); }
+    if (typeof av === 'string') return av.localeCompare(bv, 'sv') * sortDir;
+    return (av - bv) * sortDir;
+  });
+
+  // Group by email for expand
+  const byEmail = {};
+  sorted.forEach(r => {
+    if (!byEmail[r.email]) byEmail[r.email] = { name: r.name, email: r.email, sessions: [] };
+    byEmail[r.email].sessions.push(r);
+  });
+
+  const body = document.getElementById('table-body');
+  body.innerHTML = '';
+
+  Object.values(byEmail).forEach(student => {
+    const best = student.sessions.reduce((a, b) => a.pct > b.pct ? a : b);
+    const latest = student.sessions[0];
+    const avg = Math.round(student.sessions.reduce((a, s) => a + s.pct, 0) / student.sessions.length);
+    const isExp = expandedEmail === student.email;
+
+    const tr = document.createElement('tr');
+    if (isExp) tr.classList.add('expanded');
+    tr.innerHTML = `
+      <td><div style="font-weight:500">${student.name}</div><div style="font-size:0.78rem;color:var(--text-dim)">${student.email}</div></td>
+      <td style="color:var(--text-dim);font-size:0.82rem">${student.sessions.length} test${student.sessions.length > 1 ? 'er' : ''}</td>
+      <td>${pctBadge(avg)} <span style="font-size:0.78rem;color:var(--text-dim);margin-left:4px">snitt</span></td>
+      <td style="color:var(--text-dim);font-size:0.82rem">${fmtDate(latest.date)}</td>
+    `;
+    tr.onclick = () => toggleExpand(student.email);
+    body.appendChild(tr);
+
+    if (isExp) {
+      const dr = document.createElement('tr');
+      dr.classList.add('detail-row');
+      dr.innerHTML = `<td colspan="4">
+        <div class="session-list">
+          ${student.sessions.map(s => `
+            <div class="session-item">
+              <span class="sname">${s.quiz}</span>
+              <span class="sdate">${fmtDate(s.date)}</span>
+              <span class="sscore">${s.score}/${s.max} (${s.pct}%)</span>
+              ${pctBadge(s.pct)}
+            </div>
+          `).join('')}
+        </div>
+      </td>`;
+      body.appendChild(dr);
+    }
+  });
+
+  if (!Object.keys(byEmail).length) {
+    body.innerHTML = '<tr><td colspan="4" class="empty">Inga resultat matchar filtret.</td></tr>';
+  }
+}
+
+function toggleExpand(email) {
+  expandedEmail = expandedEmail === email ? null : email;
+  filterTable();
+}
+
+function pctBadge(pct) {
+  const cls = pct >= 70 ? 'pct-high' : pct >= 40 ? 'pct-mid' : 'pct-low';
+  return `<span class="pct-badge ${cls}">${pct}%</span>`;
+}
+
+function fmtDate(d) {
+  return new Date(d).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function exportCSV() {
+  const headers = ['Namn', 'E-post', 'Test', 'Poäng', 'Max', 'Procent', 'Datum'];
+  const rows = allRows.map(r => [
+    r.name, r.email, r.quiz, r.score, r.max, r.pct + '%',
+    new Date(r.date).toLocaleDateString('sv-SE')
+  ]);
+  const csv = [headers, ...rows].map(r => r.join(';')).join('\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'historietest-resultat.csv';
+  a.click();
+}
+</script>
+</body>
+</html>

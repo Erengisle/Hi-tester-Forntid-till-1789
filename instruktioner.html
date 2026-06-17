@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instruktioner – Historietestsystemet</title>
+  <style>
+    :root {
+      --bg: #1a1612;
+      --surface: #242018;
+      --surface2: #2e2820;
+      --border: #3d3528;
+      --gold: #c9a84c;
+      --gold-dim: #8a6e2f;
+      --text: #e8dfc8;
+      --text-dim: #9a8f78;
+      --radius: 8px;
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --font-body: system-ui, -apple-system, sans-serif;
+      --font-mono: 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+    .logo span {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      display: block;
+      font-family: var(--font-body);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.15s;
+    }
+    .nav-links a:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      gap: 3rem;
+    }
+
+    /* SIDEBAR */
+    nav.sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+    }
+
+    .sidebar-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 5px 0;
+      border-left: 2px solid transparent;
+      padding-left: 10px;
+      transition: color 0.1s, border-color 0.1s;
+    }
+    .sidebar a:hover, .sidebar a.active {
+      color: var(--gold);
+      border-left-color: var(--gold);
+    }
+    .sidebar a.sub { padding-left: 22px; font-size: 0.82rem; }
+
+    /* CONTENT */
+    article {
+      flex: 1;
+      min-width: 0;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .intro-meta {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      color: var(--text);
+      font-size: 0.93rem;
+      margin-bottom: 0.9rem;
+    }
+
+    /* STEPS */
+    .steps {
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+    }
+
+    .step-num {
+      counter-increment: step;
+      content: counter(step);
+      background: var(--gold-dim);
+      color: #1a1612;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+    .step-body strong { display: block; color: var(--text); margin-bottom: 0.25rem; font-size: 0.93rem; }
+    .step-body p { margin: 0; color: var(--text-dim); font-size: 0.88rem; }
+
+    /* CODE */
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      color: var(--gold);
+    }
+
+    pre {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    pre .comment { color: var(--text-dim); }
+    pre .key { color: #c9a84c; }
+    pre .str { color: #8dcc81; }
+    pre .num { color: #81b4cc; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--gold-dim);
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .callout strong { color: var(--text); }
+
+    /* FILE LIST */
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+    }
+
+    .file-icon { font-size: 1.1rem; }
+    .file-name { color: var(--gold); font-family: var(--font-mono); font-size: 0.85rem; }
+    .file-desc { color: var(--text-dim); }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 1rem 0;
+    }
+    th {
+      text-align: left;
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 0.75rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+    }
+    td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    td:first-child { color: var(--gold); font-family: var(--font-mono); font-size: 0.83rem; }
+
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; gap: 1.5rem; }
+      nav.sidebar { width: 100%; position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    Historietestsystemet
+    <span>Dokumentation och instruktioner</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">→ Quiz (elever)</a>
+    <a href="lararpanel.html">→ Lärarpanel</a>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <div class="sidebar-title">Innehåll</div>
+    <a href="#oversikt">Översikt</a>
+    <a href="#filer">Filer i repot</a>
+    <a href="#elever">Elevernas flöde</a>
+    <a href="#larare">Lärarens flöde</a>
+    <a href="#lagg-till-quiz">Lägg till ett quiz</a>
+    <a href="#lagg-till-quiz" class="sub">Quizformatet</a>
+    <a href="#lagg-till-quiz" class="sub">Kodexempel</a>
+    <a href="#supabase">Supabase-databasen</a>
+    <a href="#supabase" class="sub">Tabeller</a>
+    <a href="#supabase" class="sub">Visa data direkt</a>
+    <a href="#github">GitHub Pages</a>
+    <a href="#felsok">Felsökning</a>
+  </nav>
+
+  <article>
+
+    <section id="oversikt">
+      <h1>Historietestsystemet</h1>
+      <div class="intro-meta">
+        Tre filer · GitHub Pages · Supabase · Google-inloggning
+      </div>
+
+      <p>Systemet består av tre HTML-filer som ligger i ett GitHub-repo och publiceras via GitHub Pages. Inga servrar att driftsätta, inga kostnader. Databasen och inloggningen sköts av Supabase.</p>
+
+      <p>Eleverna loggar in med sitt Google-skolkonto, gör ett quiz och ser sitt resultat direkt. Resultaten sparas automatiskt i databasen. Du som lärare ser alla elevers resultat i lärarpanelen — sorterat, filtrerbart och exporterbart till CSV.</p>
+
+      <div class="callout">
+        <strong>Viktigt:</strong> Det här systemet är helt skilt från Google Formulär och används enbart för de informella historietesterna. Provresultat i historia hanteras separat via Google Formulär som vanligt.
+      </div>
+    </section>
+
+    <section id="filer">
+      <h2>Filer i repot</h2>
+      <div class="file-list">
+        <div class="file-item">
+          <span class="file-icon">📝</span>
+          <div>
+            <div class="file-name">index.html</div>
+            <div class="file-desc">Elevernas quiz-app. Inloggning, frågorna och resultatvisning.</div>
+          </div>
+        </div>
+        <div class="file-item">
+          <span class="file-icon">📊</span>
+          <div>
+            <div class="file-name">lararpanel.html</div>
+            <div class="file-desc">Din lärarpanel. Visar alla elevers resultat, statistik och export till CSV.</div>
+          </div>
+        </div>
+        <div class="file-item">
+          <span class="file-icon">📄</span>
+          <div>
+            <div class="file-name">instruktioner.html</div>
+            <div class="file-desc">Den här sidan. Behöver inte uppdateras om du inte vill.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="elever">
+      <h2>Elevernas flöde</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Öppnar länken</strong>
+            <p>Du delar länken till <code>index.html</code> eller visar en QR-kod på tavlan. Eleverna öppnar den i mobilen eller datorn.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Loggar in med Google</strong>
+            <p>De klickar på "Logga in med Google" och väljer sitt skolkonto. Sker bara första gången — sedan sker inloggningen automatiskt.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Väljer ett test</strong>
+            <p>Listan visar alla tillgängliga quiz. De kan göra om tester hur många gånger de vill — varje försök sparas separat.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Svarar på frågorna</strong>
+            <p>En fråga i taget. Efter varje svar ser de direkt om de hade rätt (grönt) eller fel (rött) och vilket alternativ som var korrekt.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Ser resultatet</strong>
+            <p>Poäng, procent och genomgång av alla svar visas. Resultatet sparas automatiskt — eleven behöver inte göra något.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="larare">
+      <h2>Lärarens flöde</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Öppna lärarpanelen</strong>
+            <p>Gå till <code>lararpanel.html</code> och logga in med ditt Google-konto.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Se översikten</strong>
+            <p>Överst visas antal elever, genomförda tester, snittresultat och hur många som gjort test idag. Under det bryts resultaten ned per quiz.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Klicka på en elev</strong>
+            <p>Tabellen visar en rad per elev med snittresultat. Klicka på en rad för att expandera och se alla enskilda försök.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Filtrera och exportera</strong>
+            <p>Sök på namn, filtrera på vilket quiz som helst, eller exportera allt till en CSV-fil som öppnas i Excel eller Sheets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lagg-till-quiz">
+      <h2>Lägg till ett nytt quiz</h2>
+      <p>All quizdata finns i <code>index.html</code>, i en array som heter <code>QUIZZES</code>. Varje quiz är ett objekt med tre fält:</p>
+
+      <table>
+        <thead>
+          <tr><th>Fält</th><th>Vad det är</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>id</td><td>Unikt kort namn utan mellanslag, används internt. T.ex. <code>medeltid-del1</code></td></tr>
+          <tr><td>name</td><td>Det namn som visas för eleverna och i lärarpanelen</td></tr>
+          <tr><td>questions</td><td>En lista med frågor (se format nedan)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Varje fråga har tre fält</h3>
+      <table>
+        <thead>
+          <tr><th>Fält</th><th>Vad det är</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>q</td><td>Frågetexten</td></tr>
+          <tr><td>opts</td><td>En lista med exakt fyra svarsalternativ (strängar)</td></tr>
+          <tr><td>correct</td><td>Index (0–3) för det rätta svaret. 0 = första alternativet, 1 = andra, osv.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Exempel – så här lägger du till ett nytt quiz</h3>
+      <p>Öppna <code>index.html</code> i en textredigerare. Hitta raden <code>// ── Lägg till fler quiz-objekt här ──</code> och klistra in ditt nya quiz precis före den raden:</p>
+
+<pre><span class="comment">// Nytt quiz – Medeltiden</span>
+{
+  <span class="key">id</span>: <span class="str">'medeltiden-del1'</span>,
+  <span class="key">name</span>: <span class="str">'Medeltiden – Del 1'</span>,
+  <span class="key">questions</span>: [
+    {
+      <span class="key">q</span>: <span class="str">'Vilket år brukar man säga att medeltiden börjar?'</span>,
+      <span class="key">opts</span>: [
+        <span class="str">'476 e.Kr., när Västroms rike föll'</span>,
+        <span class="str">'1066, efter slaget vid Hastings'</span>,
+        <span class="str">'313 e.Kr., när kristendomen legaliserades'</span>,
+        <span class="str">'800 e.Kr., när Karl den store kröntes'</span>
+      ],
+      <span class="key">correct</span>: <span class="num">0</span>   <span class="comment">// 0 = första alternativet är rätt</span>
+    },
+    <span class="comment">// ... fler frågor ...</span>
+  ]
+},</pre>
+
+      <div class="callout">
+        <strong>Tips:</strong> Blanda gärna rätt svars position — låt inte alla rätta svar vara A. Ändra bara värdet på <code>correct</code> (0, 1, 2 eller 3) så pekar systemet alltid på rätt alternativ oavsett ordning.
+      </div>
+
+      <p>Spara filen och ladda upp den till GitHub. Quizet syns direkt för eleverna utan att något annat behöver ändras.</p>
+    </section>
+
+    <section id="supabase">
+      <h2>Supabase-databasen</h2>
+      <p>Projektet heter <strong>Hi-tester, Forntid till 1789</strong> och finns på <a href="https://supabase.com/dashboard" style="color:var(--gold)">supabase.com/dashboard</a>. Databasen har tre tabeller:</p>
+
+      <table>
+        <thead>
+          <tr><th>Tabell</th><th>Innehåll</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>profiles</td><td>En rad per elev med namn och e-post. Skapas automatiskt vid första inloggningen.</td></tr>
+          <tr><td>quiz_sessions</td><td>Ett tillfälle per gång en elev slutför ett quiz — quiz-namn, poäng och tidsstämpel.</td></tr>
+          <tr><td>quiz_answers</td><td>Varje enskilt svar: frågetext, valt alternativ, rätt alternativ och om det var rätt.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Se data direkt i Supabase</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Gå till Table Editor</strong>
+            <p>Supabase Dashboard → ditt projekt → <strong>Table Editor</strong> i vänstermenyn.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Välj quiz_sessions</strong>
+            <p>Här ser du alla genomförda tester med elev-id, poäng och tidpunkt. Klicka på kolumnrubriker för att sortera.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Exportera härifrån också</strong>
+            <p>Supabase har en inbyggd CSV-export per tabell via knappen uppe till höger om tabellen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="github">
+      <h2>GitHub Pages</h2>
+      <p>Repot publiceras automatiskt via GitHub Pages. När du uppdaterar en fil (t.ex. lägger till ett nytt quiz i <code>index.html</code>) gör du så här:</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Öppna repot på GitHub</strong>
+            <p>Gå till <code>github.com/Erengisle/&lt;repo-namn&gt;</code></p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Klicka på filen du vill ändra</strong>
+            <p>T.ex. <code>index.html</code> → klicka på pennikonen för att redigera direkt i webbläsaren.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Spara (Commit changes)</strong>
+            <p>Skriv en kort beskrivning av vad du ändrade, klicka på "Commit changes". GitHub Pages uppdateras automatiskt inom en minut.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="felsok">
+      <h2>Felsökning</h2>
+
+      <h3>Eleven kan inte logga in</h3>
+      <p>Kontrollera att GitHub Pages-URL:en är tillagd under <strong>Authentication → URL Configuration</strong> i Supabase (både Site URL och Redirect URLs).</p>
+
+      <h3>Resultaten sparas inte</h3>
+      <p>Eleven måste vara inloggad. Om det fortfarande inte fungerar — kontrollera att tabellerna i Supabase har Row Level Security aktiverat med rätt policies (skapades automatiskt vid setup).</p>
+
+      <h3>Lärarpanelen visar inga elever</h3>
+      <p>Panelen visar bara elever som faktiskt loggat in och gjort minst ett test. Det är normalt att den är tom i början.</p>
+
+      <h3>Ett quiz syns inte för eleverna</h3>
+      <p>Kontrollera att du sparat filen och att GitHub Pages hunnit uppdateras (kan ta upp till 1 minut). Kontrollera också att quizobjektet i <code>QUIZZES</code>-arrayen har ett kommatecken efter sig om det inte är det sista i listan.</p>
+    </section>
+
+  </article>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historietest – Forntid till 1789</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #1a1612;
+      --surface: #242018;
+      --surface2: #2e2820;
+      --border: #3d3528;
+      --gold: #c9a84c;
+      --gold-dim: #8a6e2f;
+      --text: #e8dfc8;
+      --text-dim: #9a8f78;
+      --correct: #4a7c3f;
+      --correct-bg: #1e3019;
+      --wrong: #7c3f3f;
+      --wrong-bg: #301919;
+      --radius: 8px;
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --font-body: system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .logo span {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      display: block;
+      font-family: var(--font-body);
+      letter-spacing: 0;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .signout-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .signout-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    main {
+      width: 100%;
+      max-width: 680px;
+      padding: 2rem 1.5rem;
+      flex: 1;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #screen-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+
+    .login-sub {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    .login-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: border-color 0.15s;
+    }
+    .login-btn:hover { border-color: var(--gold); }
+
+    .google-icon {
+      width: 20px; height: 20px;
+    }
+
+    /* ── QUIZ LIST SCREEN ── */
+    #screen-list h2 {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    #screen-list .subtitle {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .quiz-card:hover { border-color: var(--gold); }
+
+    .quiz-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .quiz-card-meta {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .quiz-card-arrow {
+      color: var(--gold-dim);
+      font-size: 1.25rem;
+    }
+
+    .history-section {
+      margin-top: 2.5rem;
+    }
+
+    .history-section h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .history-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .history-row .quiz-n { color: var(--text-dim); }
+    .history-row .score-val { color: var(--gold); font-weight: 500; }
+    .history-row .date { color: var(--text-dim); font-size: 0.78rem; }
+
+    /* ── QUIZ SCREEN ── */
+    .quiz-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .quiz-header h2 {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .progress-bar-wrap {
+      background: var(--surface2);
+      border-radius: 999px;
+      height: 4px;
+      margin-top: 0.75rem;
+    }
+
+    .progress-bar {
+      background: var(--gold);
+      height: 4px;
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    .question-counter {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 0.4rem;
+    }
+
+    .question-text {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      transition: border-color 0.1s, background 0.1s;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .option:hover:not(.locked) { border-color: var(--gold-dim); background: var(--surface2); }
+    .option.correct { border-color: var(--correct); background: var(--correct-bg); color: #a8d89f; }
+    .option.wrong   { border-color: var(--wrong);   background: var(--wrong-bg);   color: #d89f9f; }
+    .option.locked  { cursor: default; }
+
+    .option-letter {
+      font-weight: 600;
+      color: var(--gold-dim);
+      min-width: 1.2rem;
+    }
+    .option.correct .option-letter { color: #6ecf62; }
+    .option.wrong   .option-letter { color: #cf6262; }
+
+    .next-btn {
+      margin-top: 1.25rem;
+      background: var(--gold);
+      color: #1a1612;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: none;
+    }
+    .next-btn:hover { background: #d4b45f; }
+    .next-btn.visible { display: inline-block; }
+
+    /* ── RESULT SCREEN ── */
+    #screen-result {
+      text-align: center;
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-score {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin: 1.25rem 0 0.25rem;
+    }
+
+    .result-of {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .result-answers {
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+
+    .result-answers h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .result-row {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .result-row .rq { color: var(--text-dim); margin-bottom: 0.3rem; }
+    .result-row .ra { display: flex; align-items: flex-start; gap: 0.5rem; }
+    .result-row .tick { color: #6ecf62; }
+    .result-row .cross { color: #cf6262; }
+    .result-row .correct-ans { color: #6ecf62; font-size: 0.82rem; margin-top: 0.2rem; }
+
+    .back-btn {
+      margin-top: 2rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .back-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    .saving-note {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 480px) {
+      main { padding: 1.25rem 1rem; }
+      .login-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    Historietest
+    <span>Forntid till 1789</span>
+  </div>
+  <div class="user-info" id="user-info" style="display:none">
+    <span id="user-name"></span>
+    <button class="signout-btn" onclick="signOut()">Logga ut</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- LOGIN -->
+  <div id="screen-login">
+    <div class="login-title">Välkommen till<br>Historietesterna</div>
+    <div class="login-sub">Logga in med ditt skolkonto för att göra testerna. Dina resultat sparas automatiskt.</div>
+    <button class="login-btn" onclick="signInWithGoogle()">
+      <svg class="google-icon" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.8 0 6.9 5.4 2.9 13.3l7.8 6.1C12.5 13.2 17.8 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/>
+        <path fill="#FBBC05" d="M10.7 28.6A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.1.7-4.6l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.8l8.2-6.2z"/>
+        <path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.2 0-11.5-4.2-13.4-9.9l-8.2 6.2C6.9 42.6 14.8 48 24 48z"/>
+      </svg>
+      Logga in med Google
+    </button>
+  </div>
+
+  <!-- QUIZ LIST -->
+  <div id="screen-list" class="hidden">
+    <h2>Välj ett test</h2>
+    <p class="subtitle">Klicka på ett test för att börja. Du kan göra om testerna hur många gånger du vill.</p>
+    <div id="quiz-list-container"></div>
+    <div class="history-section">
+      <h3>Dina tidigare resultat</h3>
+      <div id="history-container"><p style="color:var(--text-dim);font-size:0.88rem">Inga resultat än.</p></div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz" class="hidden">
+    <div class="quiz-header">
+      <h2 id="quiz-title"></h2>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="question-counter" id="question-counter"></div>
+    </div>
+    <div class="question-text" id="question-text"></div>
+    <div id="options-container"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Nästa fråga →</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="screen-result" class="hidden">
+    <div class="result-title" id="result-quiz-name"></div>
+    <div class="result-score" id="result-score"></div>
+    <div class="result-of" id="result-of"></div>
+    <div class="saving-note" id="saving-note">Sparar resultat…</div>
+    <div class="result-answers">
+      <h3>Dina svar</h3>
+      <div id="result-answers-container"></div>
+    </div>
+    <button class="back-btn" onclick="showList()">← Tillbaka till testerna</button>
+  </div>
+
+</main>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const SUPABASE_URL  = 'https://dkisazpnzyqmcacdlnsk.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRraXNhenBuenlxbWNhY2RsbnNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzE1MDAsImV4cCI6MjA5NzIwNzUwMH0.e7TGqXuv9bTbyGJ8xA3lzjjiNQhmvLEYzTxntF0PjwY';
+
+// ── QUIZ DATA ────────────────────────────────────────────
+// Add more quizzes here when ready. Each quiz = { id, name, questions[] }
+// question = { q, opts: ['A','B','C','D'], correct: 0-3 }
+const QUIZZES = [
+  {
+    id: 'forntid-antiken-del1',
+    name: 'Forntiden och antiken – Del 1',
+    questions: [
+      {
+        q: 'Vilka tre förutsättningar var extra viktiga för att högkulturerna kunde uppstå?',
+        opts: [
+          'Bördiga flodslätter, möjlighet att lagra överskott av mat samt organiserad handel och administration',
+          'Tillgång till havet, starkt kungadöme samt uppfinningen av hjulet',
+          'Kallt klimat, nomadisk livsstil samt kontakt med andra folk',
+          'Rika malmfyndigheter, demokratisk styrelseform samt stark militär'
+        ],
+        correct: 0
+      },
+      {
+        q: 'När börjar och slutar antiken?',
+        opts: [
+          'Antiken börjar ca 3000 f.Kr. och slutar med Roms fall år 476 e.Kr.',
+          'Antiken börjar ca 800 f.Kr. med Homeros verk och slutar med Konstantinopels fall 1453',
+          'Antiken börjar med Alexander den stores erövringar 336 f.Kr. och slutar ca 500 e.Kr.',
+          'Antiken börjar ca 5000 f.Kr. och slutar med kristendomens spridning ca 300 e.Kr.'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför har man delat in perioden som "antiken"?',
+        opts: [
+          'För att Grekland och Rom skapade en gemensam civilisation med skrift, lagar och konst som lade grunden för den västerländska kulturen',
+          'För att det var den period då de flesta religioner uppstod och spreds i Europa',
+          'För att perioden präglas av att européerna för första gången kom i kontakt med Asien',
+          'För att alla folk under den här perioden levde under samma kejsare i Rom'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför var Medelhavet viktigt för antikens handel?',
+        opts: [
+          'Medelhavet var ett lugnt innanhav som möjliggjorde sjöhandel och kontakt mellan folk i Europa, Nordafrika och Mellanöstern',
+          'Medelhavet hade rika fiskevatten som försörjde hela den antika världen med mat',
+          'Medelhavet var den enda handelsvägsnod som förbandt Kina med Romarriket direkt',
+          'Medelhavet kontrollerades av Romarriket och all handel måste gå via Rom för att beskattas'
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    id: 'forntid-antiken-del2',
+    name: 'Forntidens och antikens huvudlinjer – Del 2',
+    questions: [
+      {
+        q: 'Varför växte olika samhällsklasser fram i de första städerna?',
+        opts: [
+          'Arbetsdelningen i städerna ledde till att vissa fick makt och rikedom – präster, krigare och hantverkare hade olika status än bönder och slavar',
+          'Städerna tvingades dela in befolkningen i klasser för att kunna bygga murar och försvara sig mot fiender',
+          'Klasserna uppstod för att olika folkgrupper med olika ursprung bosatte sig i samma stad',
+          'Klasserna skapades av kungen som ett sätt att kontrollera skatteinsamlingen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Hur långt sträckte sig det första stora europeiska väldet och vem skapade det?',
+        opts: [
+          'Alexander den store skapade ett välde som sträckte sig från Makedonien i väster till Indien i öster',
+          'Romarriket skapades av Julius Caesar och sträckte sig från Spanien till Kina',
+          'Persien skapade ett välde som sträckte sig från Egypten till Indien, inklusive hela Grekland',
+          'Athens stadstat skapade under Perikles ett välde som kontrollerade hela Medelhavet'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför var det viktigt att skapa en kalender?',
+        opts: [
+          'Kalendern gjorde det möjligt att planera jordbruket, religiösa högtider och administration i samhället',
+          'Kalendern behövdes för att kunna bestämma när man skulle samla in skatter från andra länder',
+          'Kalendern skapades för att hålla reda på kungarnas födelsdagar och mark erövringstidpunkter',
+          'Kalendern behövdes framför allt för att navigera till havs och hitta nya handelsvägar'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Hur kunde handeln föra olika kulturer närmare varandra?',
+        opts: [
+          'Handeln spred varor, idéer, religion, skrift och teknologi mellan folkgrupper som annars inte hade kontakt med varandra',
+          'Handeln ledde alltid till krig eftersom olika folk konkurrerade om samma resurser',
+          'Handeln förde kulturer samman genom att alla tvingades lära sig det romerska myntsystemet',
+          'Handeln skedde enbart inom samma kultur och spred därför inga nya idéer mellan olika folk'
+        ],
+        correct: 0
+      }
+    ]
+  }
+  // ── Lägg till fler quiz-objekt här ──
+];
+
+// ── SUPABASE ─────────────────────────────────────────────
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let currentUser = null;
+let currentQuiz = null;
+let currentQ = 0;
+let answers = [];
+
+// ── AUTH ─────────────────────────────────────────────────
+db.auth.onAuthStateChange(async (_event, session) => {
+  if (session?.user) {
+    currentUser = session.user;
+    document.getElementById('user-name').textContent = session.user.user_metadata?.full_name || session.user.email;
+    document.getElementById('user-info').style.display = 'flex';
+    showList();
+  } else {
+    currentUser = null;
+    document.getElementById('user-info').style.display = 'none';
+    show('login');
+  }
+});
+
+async function signInWithGoogle() {
+  await db.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.href }
+  });
+}
+
+async function signOut() {
+  await db.auth.signOut();
+}
+
+// ── SCREENS ──────────────────────────────────────────────
+function show(name) {
+  ['login','list','quiz','result'].forEach(s => {
+    document.getElementById('screen-' + s).classList.toggle('hidden', s !== name);
+  });
+}
+
+async function showList() {
+  show('list');
+  renderQuizList();
+  await loadHistory();
+}
+
+function renderQuizList() {
+  const c = document.getElementById('quiz-list-container');
+  c.innerHTML = QUIZZES.map(quiz => `
+    <div class="quiz-card" onclick="startQuiz('${quiz.id}')">
+      <div>
+        <div class="quiz-card-title">${quiz.name}</div>
+        <div class="quiz-card-meta">${quiz.questions.length} frågor</div>
+      </div>
+      <div class="quiz-card-arrow">›</div>
+    </div>
+  `).join('');
+}
+
+async function loadHistory() {
+  const { data } = await db
+    .from('quiz_sessions')
+    .select('quiz_name, score, max_score, completed_at')
+    .order('completed_at', { ascending: false })
+    .limit(20);
+
+  const c = document.getElementById('history-container');
+  if (!data || data.length === 0) {
+    c.innerHTML = '<p style="color:var(--text-dim);font-size:0.88rem">Inga resultat än.</p>';
+    return;
+  }
+  c.innerHTML = data.map(r => {
+    const pct = Math.round(r.score / r.max_score * 100);
+    const d = new Date(r.completed_at).toLocaleDateString('sv-SE', { day:'numeric', month:'short', year:'numeric' });
+    return `<div class="history-row">
+      <span class="quiz-n">${r.quiz_name}</span>
+      <span class="score-val">${r.score}/${r.max_score} (${pct}%)</span>
+      <span class="date">${d}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── QUIZ LOGIC ───────────────────────────────────────────
+function startQuiz(quizId) {
+  currentQuiz = QUIZZES.find(q => q.id === quizId);
+  currentQ = 0;
+  answers = [];
+  show('quiz');
+  document.getElementById('quiz-title').textContent = currentQuiz.name;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = currentQuiz.questions[currentQ];
+  const total = currentQuiz.questions.length;
+  const letters = ['A','B','C','D'];
+
+  document.getElementById('progress-bar').style.width = ((currentQ / total) * 100) + '%';
+  document.getElementById('question-counter').textContent = `Fråga ${currentQ + 1} av ${total}`;
+  document.getElementById('question-text').textContent = q.q;
+  document.getElementById('next-btn').classList.remove('visible');
+
+  const c = document.getElementById('options-container');
+  c.innerHTML = q.opts.map((opt, i) => `
+    <div class="option" id="opt-${i}" onclick="pickAnswer(${i})">
+      <span class="option-letter">${letters[i]}</span>
+      <span>${opt}</span>
+    </div>
+  `).join('');
+}
+
+function pickAnswer(idx) {
+  const q = currentQuiz.questions[currentQ];
+  const isCorrect = idx === q.correct;
+
+  answers.push({
+    question_text: q.q,
+    chosen_option: q.opts[idx],
+    correct_option: q.opts[q.correct],
+    is_correct: isCorrect
+  });
+
+  // Lock all options
+  for (let i = 0; i < q.opts.length; i++) {
+    const el = document.getElementById('opt-' + i);
+    el.classList.add('locked');
+    if (i === q.correct) el.classList.add('correct');
+    else if (i === idx) el.classList.add('wrong');
+  }
+
+  const isLast = currentQ === currentQuiz.questions.length - 1;
+  const btn = document.getElementById('next-btn');
+  btn.textContent = isLast ? 'Se resultat →' : 'Nästa fråga →';
+  btn.classList.add('visible');
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < currentQuiz.questions.length) {
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+// ── RESULT ───────────────────────────────────────────────
+async function showResult() {
+  const score = answers.filter(a => a.is_correct).length;
+  const max = currentQuiz.questions.length;
+
+  document.getElementById('result-quiz-name').textContent = currentQuiz.name;
+  document.getElementById('result-score').textContent = score + '/' + max;
+  document.getElementById('result-of').textContent = Math.round(score / max * 100) + '% rätt';
+  document.getElementById('saving-note').textContent = 'Sparar resultat…';
+
+  const c = document.getElementById('result-answers-container');
+  c.innerHTML = answers.map(a => `
+    <div class="result-row">
+      <div class="rq">${a.question_text}</div>
+      <div class="ra">
+        <span class="${a.is_correct ? 'tick' : 'cross'}">${a.is_correct ? '✓' : '✗'}</span>
+        <div>
+          <div>${a.chosen_option}</div>
+          ${!a.is_correct ? `<div class="correct-ans">Rätt svar: ${a.correct_option}</div>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  show('result');
+  await saveResult(score, max);
+}
+
+async function saveResult(score, max) {
+  const note = document.getElementById('saving-note');
+  try {
+    const { data: session, error: sessErr } = await db
+      .from('quiz_sessions')
+      .insert({
+        user_id: currentUser.id,
+        quiz_name: currentQuiz.name,
+        score,
+        max_score: max
+      })
+      .select()
+      .single();
+
+    if (sessErr) throw sessErr;
+
+    const { error: ansErr } = await db
+      .from('quiz_answers')
+      .insert(answers.map(a => ({ session_id: session.id, ...a })));
+
+    if (ansErr) throw ansErr;
+
+    note.textContent = '✓ Resultat sparat';
+    note.style.color = '#6ecf62';
+  } catch (e) {
+    note.textContent = 'Kunde inte spara resultatet. Kontrollera inloggningen.';
+    console.error(e);
+  }
+}
+</script>
+
+</body>
+</html>
