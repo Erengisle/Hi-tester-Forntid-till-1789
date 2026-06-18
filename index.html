@@ -439,9 +439,11 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 // Add more quizzes here when ready. Each quiz = { id, name, questions[] }
 // question = { q, opts: ['A','B','C','D'], correct: 0-3 }
 const QUIZZES = [
+
+  // ── FORNTIDEN ────────────────────────────────────────────
   {
-    id: 'forntid-antiken-del1',
-    name: 'Forntiden och antiken – Del 1',
+    id: 'forntiden',
+    name: 'Forntiden',
     questions: [
       {
         q: 'Vilka tre förutsättningar var extra viktiga för att högkulturerna kunde uppstå?',
@@ -482,13 +484,7 @@ const QUIZZES = [
           'Medelhavet kontrollerades av Romarriket och all handel måste gå via Rom för att beskattas'
         ],
         correct: 0
-      }
-    ]
-  },
-  {
-    id: 'forntid-antiken-del2',
-    name: 'Forntidens och antikens huvudlinjer – Del 2',
-    questions: [
+      },
       {
         q: 'Varför växte olika samhällsklasser fram i de första städerna?',
         opts: [
@@ -505,7 +501,7 @@ const QUIZZES = [
           'Alexander den store skapade ett välde som sträckte sig från Makedonien i väster till Indien i öster',
           'Romarriket skapades av Julius Caesar och sträckte sig från Spanien till Kina',
           'Persien skapade ett välde som sträckte sig från Egypten till Indien, inklusive hela Grekland',
-          'Athens stadstat skapade under Perikles ett välde som kontrollerade hela Medelhavet'
+          'Atens stadstat skapade under Perikles ett välde som kontrollerade hela Medelhavet'
         ],
         correct: 0
       },
@@ -514,7 +510,7 @@ const QUIZZES = [
         opts: [
           'Kalendern gjorde det möjligt att planera jordbruket, religiösa högtider och administration i samhället',
           'Kalendern behövdes för att kunna bestämma när man skulle samla in skatter från andra länder',
-          'Kalendern skapades för att hålla reda på kungarnas födelsdagar och mark erövringstidpunkter',
+          'Kalendern skapades för att hålla reda på kungarnas födelsdagar och erövringstidpunkter',
           'Kalendern behövdes framför allt för att navigera till havs och hitta nya handelsvägar'
         ],
         correct: 0
@@ -530,7 +526,242 @@ const QUIZZES = [
         correct: 0
       }
     ]
+  },
+
+  // ── ANTIKEN ──────────────────────────────────────────────
+  {
+    id: 'antiken',
+    name: 'Antiken',
+    questions: [
+      {
+        q: 'Nämn några viktiga orsaker till att den grekiska kulturen kunde spridas runt Medelhavet.',
+        opts: [
+          'Grekernas aktiva sjöfart och kolonisering samt Alexander den stores erövringar spred det grekiska språket, konsten och filosofin över ett enormt område',
+          'Grekland erövrade militärt hela Medelhavsområdet och tvingade andra folk att anta den grekiska kulturen',
+          'Romarriket spred aktivt den grekiska kulturen som ett sätt att hålla samman sitt eget rike',
+          'Handeln med Egypten och Persien ledde av sig självt till att Grekland blev kulturcentrum utan att greker behövde flytta'
+        ],
+        correct: 0
+      },
+      {
+        q: 'De grekiska stadsstaterna var politiskt splittrade men tillhörde en gemensam kultur. Vad bestod den grekiska kulturen av?',
+        opts: [
+          'Gemensamt språk, gemensamma gudar och myter, gemensamma spel (olympiaden) samt ett gemensamt ideal kring konst, filosofi och retorik',
+          'En gemensam kung, ett gemensamt lagstiftningssystem och ett gemensamt militärförbund mot Persien',
+          'Gemensamt ekonomiskt system baserat på silverhandel, gemensam flotta och gemensamma kolonier i Nordafrika',
+          'En gemensam filosofiskola grundad av Sokrates, gemensamt jordbrukssystem och en övergud som alla dyrkade lika'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilka är de viktigaste skillnaderna mellan Atens demokrati och vår tids demokrati?',
+        opts: [
+          'I Aten deltog enbart fria manliga medborgare – kvinnor, slavar och utlänningar var utestängda, vilket uteslöt en stor del av befolkningen',
+          'Atens demokrati var mer fullständig än vår tids eftersom alla invånare utan undantag röstade direkt om alla beslut',
+          'Atens demokrati skilde sig inte nämnvärt från modern demokrati – alla invånare hade rösträtt och lika rättigheter inför lagen',
+          'I Aten valdes ledarna på livstid av folkförsamlingen, medan vi idag väljer representanter för begränsade mandatperioder'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad är Romarrikets viktigaste bidrag till den europeiska civilisationen?',
+        opts: [
+          'Rättsystem (romersk rätt), ingenjörskonst (vägar, akvedukter), latinet som grund för europeiska språk samt kristendomens spridning som statsreligion',
+          'Demokratins uppfinning, filosofin och de olympiska spelen som fortfarande firas idag',
+          'Kompassens uppfinning, sjöfartens utveckling samt kartläggningen av världens hav och kontinenter',
+          'Handelssystemet med valuta, matematikens grunder samt byggandet av de allra första europeiska städerna'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── MEDELTIDEN ───────────────────────────────────────────
+  {
+    id: 'medeltiden',
+    name: 'Medeltiden',
+    questions: [
+      {
+        q: 'Varför kallas epoken 500 e.Kr.–1500 e.Kr. för medeltiden?',
+        opts: [
+          'Renässansens humanister kallade perioden "medeltid" eftersom de såg den som en mellanperiod av kulturellt tillbakagång mellan antiken och deras egen tid',
+          'Kyrkan myntade begreppet för att markera den period då kristendomen dominerade Europa helt och hållet',
+          'Historiker på 1800-talet skapade termen för att beskriva Europas övergång från slavsamhälle till feodalt system',
+          'Begreppet är nordiskt och uppstod när vikingarna byggde sina imperier och skapade kontakter med övriga Europa'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Ge några exempel på att teknik och vetenskap gick framåt även under medeltiden.',
+        opts: [
+          'Väderkvarnen och vattenhjulet förbättrade produktionen, gotisk arkitektur möjliggjorde höga katedraler, kompassen förbättrade sjöfarten och de första universiteten grundades',
+          'Medeltiden präglades av total vetenskaplig stagnation – alla framsteg kom från arabvärlden och nådde Europa först under renässansen',
+          'De viktigaste medeltida uppfinningarna var ångmaskinen och boktryckarkonsten, som revolutionerade samhället redan på 1000-talet',
+          'Teknikutvecklingen skedde uteslutande i klostrens laboratorier och handlade mest om att framställa mediciner och alkemi'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Det medeltida samhället i Europa genomsyrades av kristendomens idéer. Förklara varför.',
+        opts: [
+          'Kyrkan var den enda institution som spände över hela Europa – den kontrollerade utbildning, kultur, moral och politik, och hotet om exkommunikation var ett mäktigt styrmedel',
+          'Kristendomen var obligatorisk enligt romarrikets lagar som gällde hela medeltiden, och de som bröt mot dem straffades med döden',
+          'Kristendomen dominerade eftersom påven hade militär kontroll över alla europeiska furstendömen och kunde avsätta kungar direkt',
+          'Religionens starka ställning berodde på att en stor del av befolkningen var präster eller munkar under denna period'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar feodalismen och hur fungerade systemet?',
+        opts: [
+          'Ett hierarkiskt system där kungen gav mark (förläningar) till stormän mot militär tjänst, och stormännen lät bönder bruka marken mot arbete och avgifter',
+          'Ett ekonomiskt system där kyrkan ägde all mark och fördelade den till bönder mot att de betalade tionde till påven',
+          'Ett system där alla medborgare var fria att välja sin herreman, och systemet garanterade grundläggande rättigheter för bönderna',
+          'Ett system enbart i Frankrike och England där kungar köpte lojalitet av adelsmän med guld och handelsprivilegier'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken roll spelade de islamska rikena under medeltiden för Europas utveckling?',
+        opts: [
+          'De islamska rikena bevarade antikens kunskaper i matematik, astronomi och medicin och förmedlade dem till Europa, och bidrog med nya uppfinningar som algebran',
+          'De islamska rikena blockerade all handel med Asien, vilket tvingade Europa att hitta nya handelsvägar och ledde till de stora upptäcktsresorna',
+          'Islam var enbart en militär makt som hotade Europa – kulturellt och vetenskapligt bidrog de islamska rikena ingenting till europeisk civilisation',
+          'De islamska rikena ersatte det bysantinska riket som centrum för europeisk handel men hade liten påverkan på europeisk vetenskap'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad var korstågen och vilka var de viktigaste orsakerna till dem?',
+        opts: [
+          'Kyrkligt sanktionerade militära expeditioner mot det heliga landet – orsakerna var religiösa (befria Jerusalem), politiska (stärka påvens auktoritet) och ekonomiska (handel med Orienten)',
+          'Defensiva krig som europeiska kungar genomförde för att stoppa islamsk expansion in i Centraleuropa',
+          'Handelsexpeditioner ledda av italienska stadsstater för att säkra handelsvägarna till Indien och Kina',
+          'Interna europeiska religionskrig mellan katoliker och de östliga ortodoxa kyrkorna som utspelade sig i Mellanöstern'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Hur påverkade digerdöden Europa under 1300-talet?',
+        opts: [
+          'Digerdöden dödade ca en tredjedel av Europas befolkning, skapade brist på arbetskraft, försvagade feodalismen och stärkte böndernas förhandlingsstyrka',
+          'Digerdöden drabbade enbart städerna och lät landsbygden vara opåverkad, vilket stärkte jordbrukets roll i ekonomin',
+          'Digerdöden ledde till att kyrkan stärktes enormt och att påven fick aldrig så stor politisk makt som efter pestepidemins slut',
+          'Digerdödens viktigaste effekt var att den utplånade de islamska rikena och öppnade Medelhavshandeln för europeiska köpmän'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilka förändringar ledde ut ur medeltiden och in i renässansen?',
+        opts: [
+          'Boktryckarkonsten spred kunskap, handeln med Orienten förde in nya idéer, digerdöden undergrävde kyrkans auktoritet och humanisterna återvände till antikens ideal om individen och vetenskapen',
+          'Reformationen under Martin Luther avskaffade den katolska kyrkan och ersatte den med en ny humanistisk tidsanda',
+          'Det var Columbus resa 1492 och Vasco da Gamas resa 1498 som markerade slutet på medeltiden och starten av en ny era',
+          'Medeltiden tog slut när det turkiska väldet erövrade Konstantinopel 1453, vilket utplånade all europeisk handel med Asien'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kännetecknade det medeltida ståndssamhället i Europa?',
+        opts: [
+          'Samhället delades in i tre stånd: adeln (krigare), kyrkan (präster) och tredje ståndet (bönder och borgare) – ens stånd bestämde rättigheter och skyldigheter',
+          'Samhället var strikt uppdelat i två klasser: de rika i städerna och de fattiga på landsbygden, utan möjlighet till rörlighet',
+          'Alla medborgare var formellt jämlika inför lagen, men i praktiken hade kungen och påven all makt',
+          'Ståndssamhället innebar att kyrkan styrde alla tre samhällsklasserna direkt och att kungen var underställd påven i alla frågor'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför var klostren viktiga centra under medeltiden?',
+        opts: [
+          'Klostren bevarade och kopierade antikens skrifter, bedrev undervisning, gav vård åt sjuka och fattiga samt var ekonomiska centra för handel och jordbruk',
+          'Klostren var enbart religiösa reträttplatser utan ekonomisk eller kulturell betydelse för det omgivande samhället',
+          'Klostren var medeltiden viktigaste militära försvarsanläggningar och kontrollerade alla europeiska gränser',
+          'Klostren skapades uteslutande för att utbilda blivande präster och biskopar och hade ingen kontakt med det civila samhället'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── DEN NYA TIDEN ────────────────────────────────────────
+  {
+    id: 'den-nya-tiden',
+    name: 'Den nya tiden',
+    questions: [
+      {
+        q: 'Vad innebar reformationen och vilka var de viktigaste orsakerna till att den uppstod?',
+        opts: [
+          'En religiös rörelse på 1500-talet som bröt med den katolska kyrkan – orsakerna var kritik mot korruption och avlatsbrev, och Martin Luthers idéer spreds snabbt tack vare boktryckarkonsten',
+          'En politisk revolution i England och Frankrike där kungar tog makten från kyrkan för att finansiera sina krig mot varandra',
+          'Reformationen innebar att påven i Rom reformerade kyrkan inifrån och avskaffade avlatsbreven efter påtryckningar från europeiska kungar',
+          'En vetenskaplig rörelse som bröt med kyrkans världsbild och ersatte religiösa förklaringar med vetenskap och filosofi'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad drev de europeiska sjömakterna att söka nya handelsvägar under 1400- och 1500-talen?',
+        opts: [
+          'Osmanska rikets kontroll över de traditionella landvägarna till Asien tvingade européerna att söka sjövägar – dessutom lockade kryddor, guld och silver',
+          'En religiös övertygelse om att kristendomen måste spridas till hela världen var den enda drivkraften bakom de stora upptäcktsresorna',
+          'Det var renässansens vetenskapliga nyfikenhet ensamt som drev sjöfararna – intresset för att kartlägga världen var rent akademiskt',
+          'Europeiska sjömakter sökte nya handelsvägar enbart för att undvika piratangrepp längs Medelhavets kuster'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilka konsekvenser fick den europeiska kolonialismen för Amerika och Afrika?',
+        opts: [
+          'Ursprungsbefolkningar decimerades av sjukdomar och våld, den transatlantiska slavhandeln uppstod och europeiska kulturer och språk dominerade på bekostnad av inhemska',
+          'Kolonialismen var i huvudsak positiv – européerna förde med sig jordbruksteknik, medicin och utbildning som höjde levnadsstandarden',
+          'Kolonialismens effekter var begränsade till kustområden – inlandet av Amerika och Afrika påverkades inte förrän på 1800-talet',
+          'Kolonialismen ledde till att ursprungsbefolkningarna bildade egna stater tidigt och handlade jämbördigt med europeiska makter'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar den vetenskapliga revolutionen under 1500- och 1600-talen?',
+        opts: [
+          'Vetenskapsmän som Kopernikus, Galilei och Newton ifrågasatte kyrkans världsbild – solen i centrum, tyngdlagen och rörelselagarna lade grunden för modern naturvetenskap',
+          'Den vetenskapliga revolutionen handlade om att arabiska vetenskapliga verk översattes och spreds i Europa och gav européerna tillgång till antik kunskap',
+          'Den vetenskapliga revolutionen innebar att kyrkan öppnade egna laboratorier och drev forskning för att förena tro och vetenskap',
+          'Den vetenskapliga revolutionen skedde uteslutande i England och handlade om uppfinningar som förberedde den industriella revolutionen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar absolutismen och vilket land brukar lyftas fram som dess tydligaste exempel?',
+        opts: [
+          'Absolutism innebär att monarken har oinskränkt makt utan parlament eller kyrka som begränsar den – Frankrikes Ludvig XIV ("Solkungen") med sitt hov i Versailles är det tydligaste exemplet',
+          'Absolutism innebär att staten styrs av en folkvald kung med starkt stöd från adeln – England under Karl I är det tydligaste exemplet',
+          'Absolutism är ett system där kyrkans överhuvud är statschef med total makt – den habsburgska dynastin i Österrike är det tydligaste exemplet',
+          'Absolutism innebär att en militär ledare styr utan parlament – Preussen under Fredrik den store är det enda tydliga exemplet i Europa'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar upplysningen och vilka idéer spreds under 1700-talet?',
+        opts: [
+          'En intellektuell rörelse som betonade förnuft, vetenskap och individens rättigheter – filosofer som Voltaire, Rousseau och Locke ifrågasatte enväldet och lade grunden för demokratiska idéer',
+          'Upplysningen var en religiös väckelserörelse som spred protestantismen och kritiserade den katolska kyrkans överdrifter',
+          'Upplysningen var ett politiskt projekt styrt av europeiska kungahus för att utbilda befolkningen och skapa mer lojala undersåtar',
+          'Upplysningen handlade enbart om vetenskapliga framsteg – politiska idéer om demokrati fick inga konsekvenser förrän på 1800-talet'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför brukar den franska revolutionen 1789 ses som ett epokskifte?',
+        opts: [
+          'Den avskaffade kungamaktens och adelns privilegier, spred idéerna om frihet, jämlikhet och broderskap, och inspirerade demokratiska rörelser i hela världen',
+          'Den franska revolutionen var ett rent ekonomiskt uppror av borgerskapet mot skatterna – de demokratiska idealen uppstod inte förrän under Napoleon',
+          'Revolutionen var avgörande eftersom den ledde till Napoleons erövringar, som tvingade Europa att bilda nationalstater för att försvara sig',
+          '1789 är ett epokskifte enbart för Frankrikes del – resten av Europa påverkades minimalt av revolutionens idéer'
+        ],
+        correct: 0
+      }
+    ]
   }
+
   // ── Lägg till fler quiz-objekt här ──
 ];
 
