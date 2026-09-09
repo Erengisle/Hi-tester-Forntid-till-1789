@@ -977,12 +977,21 @@ async function exportCSV() {
   for (const uid of sortedUsers) {
     const p = profileMap[uid] || {};
     const row = [p.full_name || '', p.email || ''];
+    const pcts = [];
     for (const qn of quizNames) {
       const r = byUser[uid]?.[qn];
-      row.push(r ? `${r.score}/${r.max} (${Math.round(r.score/r.max*100)}%)` : '–');
+      if (r) {
+        const pct = Math.round(r.score / r.max * 100);
+        row.push(pct);
+        pcts.push(pct);
+      } else {
+        row.push('');
+      }
     }
+    row.push(pcts.length ? Math.round(pcts.reduce((a, b) => a + b, 0) / pcts.length) : '');
     rows.push(row);
   }
+  rows[0].push('Snitt (%)');
 
   const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
   const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
