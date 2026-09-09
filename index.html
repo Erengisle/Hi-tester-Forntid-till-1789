@@ -997,16 +997,16 @@ async function exportCSV() {
 
   function scoreColor(val) {
     if (val === '') return '';
-    if (val < 50) return 'background:#f4cccc';
-    if (val < 75) return 'background:#fff2cc';
-    return 'background:#d9ead3';
+    if (val < 50) return 'background:#eb190e';
+    if (val < 75) return 'background:#f5f525';
+    return 'background:#25f52f';
   }
 
   function testsColor(val) {
     const done = parseInt(val);
-    if (done === 1) return 'background:#f4cccc';
-    if (done === 2) return 'background:#fff2cc';
-    return 'background:#d9ead3';
+    if (done === 1) return 'background:#eb190e';
+    if (done === 2) return 'background:#f5f525';
+    return 'background:#25f52f';
   }
 
   const totalQuizzes = quizNames.length;
@@ -1019,7 +1019,7 @@ async function exportCSV() {
       const val = rows[ri][ci];
       let style = 'padding:4px 8px;';
       if (ri === 0) {
-        style += 'font-weight:bold;background:#c9a84c;color:#1a1612;';
+        style += 'font-weight:bold;';
       } else {
         const isQuizCol = ci >= 2 && ci < 2 + totalQuizzes;
         const isSnittCol = ci === snittCol;
