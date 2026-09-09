@@ -989,9 +989,11 @@ async function exportCSV() {
       }
     }
     row.push(pcts.length ? Math.round(pcts.reduce((a, b) => a + b, 0) / pcts.length) : '');
+    row.push(`${pcts.length}/${quizNames.length}`);
     rows.push(row);
   }
   rows[0].push('Snitt (%)');
+  rows[0].push('Gjorda tester');
 
   const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
   const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
