@@ -425,6 +425,7 @@
       <h3>Dina svar</h3>
       <div id="result-answers-container"></div>
     </div>
+    <button id="export-btn" class="back-btn" style="display:none;background:var(--gold);color:#1a1612;border:none;margin-bottom:0.5rem" onclick="exportCSV()">⬇ Exportera alla resultat (CSV)</button>
     <button class="back-btn" onclick="showList()">← Tillbaka till testerna</button>
   </div>
 
@@ -898,6 +899,9 @@ async function showResult() {
   `).join('');
 
   show('result');
+  if (currentUser?.email === 'hakan.hildingsson@edu.huddinge.se') {
+    document.getElementById('export-btn').style.display = 'block';
+  }
   await saveResult(score, max);
 }
 
@@ -929,6 +933,36 @@ async function saveResult(score, max) {
     note.textContent = 'Kunde inte spara resultatet. Kontrollera inloggningen.';
     console.error(e);
   }
+}
+
+async function exportCSV() {
+  const { data: sessions } = await db
+    .from('quiz_sessions')
+    .select('id, quiz_name, score, max_score, completed_at, profiles(email, full_name)')
+    .order('completed_at', { ascending: false });
+
+  if (!sessions || sessions.length === 0) {
+    alert('Inga resultat att exportera.');
+    return;
+  }
+
+  const rows = [['Datum', 'Elev', 'E-post', 'Quiz', 'Poäng', 'Max', 'Procent']];
+  for (const s of sessions) {
+    const d = new Date(s.completed_at).toLocaleString('sv-SE');
+    const name = s.profiles?.full_name || '';
+    const email = s.profiles?.email || '';
+    const pct = Math.round(s.score / s.max_score * 100) + '%';
+    rows.push([d, name, email, s.quiz_name, s.score, s.max_score, pct]);
+  }
+
+  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'quiz-resultat.csv';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 
