@@ -995,12 +995,49 @@ async function exportCSV() {
   rows[0].push('Gjorda tester');
   rows[0].push('Snitt (%)');
 
-  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
-  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+  function scoreColor(val) {
+    if (val === '') return '';
+    if (val < 50) return 'background:#f4cccc';
+    if (val < 75) return 'background:#fff2cc';
+    return 'background:#d9ead3';
+  }
+
+  function testsColor(val) {
+    const done = parseInt(val);
+    if (done === 1) return 'background:#f4cccc';
+    if (done === 2) return 'background:#fff2cc';
+    return 'background:#d9ead3';
+  }
+
+  const totalQuizzes = quizNames.length;
+  const snittCol = 2 + totalQuizzes + 1; // 0-indexed: Elev, E-post, quizzes..., Gjorda, Snitt
+
+  let html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"></head><body><table border="1">';
+  for (let ri = 0; ri < rows.length; ri++) {
+    html += '<tr>';
+    for (let ci = 0; ci < rows[ri].length; ci++) {
+      const val = rows[ri][ci];
+      let style = 'padding:4px 8px;';
+      if (ri === 0) {
+        style += 'font-weight:bold;background:#c9a84c;color:#1a1612;';
+      } else {
+        const isQuizCol = ci >= 2 && ci < 2 + totalQuizzes;
+        const isSnittCol = ci === snittCol;
+        const isTestsCol = ci === snittCol - 1;
+        if ((isQuizCol || isSnittCol) && val !== '') style += scoreColor(val) + ';';
+        if (isTestsCol && val !== '') style += testsColor(val) + ';';
+      }
+      html += `<td style="${style}">${val}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</table></body></html>';
+
+  const blob = new Blob([html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'quiz-resultat.csv';
+  a.download = 'quiz-resultat.xls';
   a.click();
   URL.revokeObjectURL(url);
 }
