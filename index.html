@@ -938,7 +938,7 @@ async function saveResult(score, max) {
 async function exportCSV() {
   const { data: sessions } = await db
     .from('quiz_sessions')
-    .select('id, quiz_name, score, max_score, completed_at, profiles(email, full_name)')
+    .select('id, user_id, quiz_name, score, max_score, completed_at')
     .order('completed_at', { ascending: false });
 
   if (!sessions || sessions.length === 0) {
@@ -946,11 +946,21 @@ async function exportCSV() {
     return;
   }
 
+  const userIds = [...new Set(sessions.map(s => s.user_id))];
+  const { data: profiles } = await db
+    .from('profiles')
+    .select('id, email, full_name')
+    .in('id', userIds);
+
+  const profileMap = {};
+  (profiles || []).forEach(p => { profileMap[p.id] = p; });
+
   const rows = [['Datum', 'Elev', 'E-post', 'Quiz', 'Poäng', 'Max', 'Procent']];
   for (const s of sessions) {
     const d = new Date(s.completed_at).toLocaleString('sv-SE');
-    const name = s.profiles?.full_name || '';
-    const email = s.profiles?.email || '';
+    const p = profileMap[s.user_id] || {};
+    const name = p.full_name || '';
+    const email = p.email || '';
     const pct = Math.round(s.score / s.max_score * 100) + '%';
     rows.push([d, name, email, s.quiz_name, s.score, s.max_score, pct]);
   }
