@@ -955,14 +955,33 @@ async function exportCSV() {
   const profileMap = {};
   (profiles || []).forEach(p => { profileMap[p.id] = p; });
 
-  const rows = [['Datum', 'Elev', 'E-post', 'Quiz', 'Poäng', 'Max', 'Procent']];
+  // Bygg upp: { userId: { quizName: { score, max } } } — senaste per quiz (sessions är desc)
+  const quizNames = [...new Set(QUIZZES.map(q => q.name))];
+  const byUser = {};
   for (const s of sessions) {
-    const d = new Date(s.completed_at).toLocaleString('sv-SE');
-    const p = profileMap[s.user_id] || {};
-    const name = p.full_name || '';
-    const email = p.email || '';
-    const pct = Math.round(s.score / s.max_score * 100) + '%';
-    rows.push([d, name, email, s.quiz_name, s.score, s.max_score, pct]);
+    if (!byUser[s.user_id]) byUser[s.user_id] = {};
+    if (!byUser[s.user_id][s.quiz_name]) {
+      byUser[s.user_id][s.quiz_name] = { score: s.score, max: s.max_score };
+    }
+  }
+
+  // Sortera elever på namn
+  const sortedUsers = userIds.sort((a, b) => {
+    const na = profileMap[a]?.full_name || profileMap[a]?.email || '';
+    const nb = profileMap[b]?.full_name || profileMap[b]?.email || '';
+    return na.localeCompare(nb, 'sv');
+  });
+
+  const header = ['Elev', 'E-post', ...quizNames];
+  const rows = [header];
+  for (const uid of sortedUsers) {
+    const p = profileMap[uid] || {};
+    const row = [p.full_name || '', p.email || ''];
+    for (const qn of quizNames) {
+      const r = byUser[uid]?.[qn];
+      row.push(r ? `${r.score}/${r.max} (${Math.round(r.score/r.max*100)}%)` : '–');
+    }
+    rows.push(row);
   }
 
   const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
