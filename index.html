@@ -441,6 +441,94 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 // question = { q, opts: ['A','B','C','D'], correct: 0-3 }
 const QUIZZES = [
 
+  // ── FORNTIDEN ───────────────────────────────────────────
+  {
+    id: 'forntiden',
+    name: 'Forntiden',
+    questions: [
+      {
+        q: 'Vad brukar vara gränsen mellan förhistorisk tid och historisk tid?',
+        opts: [
+          'Att skriftspråk uppstår och skriftliga källor finns',
+          'Att jordbruket uppfinns',
+          'Att hjulet uppfinns',
+          'Att Romarriket grundas'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar den neolitiska revolutionen (jordbruksrevolutionen)?',
+        opts: [
+          'Människor började odla och hålla husdjur och blev fast bosatta',
+          'Människor lärde sig att göra upp eld',
+          'Människor började tillverka verktyg av järn',
+          'Människor började skriva med kilskrift'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Hur levde människorna innan jordbruket kom?',
+        opts: [
+          'Som jägare och samlare som flyttade efter bytesdjur och växtlighet',
+          'Som bönder i små byar',
+          'Som köpmän i stora städer',
+          'Som underlydande i stora riken'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Mellan vilka två floder låg Mesopotamien?',
+        opts: [
+          'Eufrat och Tigris',
+          'Nilen och Eufrat',
+          'Indus och Ganges',
+          'Donau och Rhen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Varför var Nilens årliga översvämningar så viktiga för Egypten?',
+        opts: [
+          'De lämnade kvar fruktbar jord som gjorde jordbruk möjligt i en öken',
+          'De skyddade landet mot fiender',
+          'De gjorde att man kunde bygga pyramider av lera',
+          'De gav Egypten tillgång till havet'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallades Egyptens härskare, som ansågs ha en gudomlig status?',
+        opts: [
+          'Farao',
+          'Sultan',
+          'Konsul',
+          'Satrap'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad är kilskrift och vilket folk började använda den?',
+        opts: [
+          'Ett av världens äldsta skriftsystem, som sumererna i Mesopotamien använde',
+          'Egyptiernas bildskrift som användes på tempelväggar',
+          'Ett skriftsystem som grekerna utvecklade av det feniciska alfabetet',
+          'Romarnas skrift som användes i lagtexter'
+        ],
+        correct: 0
+      },
+      {
+        q: 'I vilken ordning kommer perioderna i Sveriges förhistoria?',
+        opts: [
+          'Stenålder, bronsålder, järnålder',
+          'Bronsålder, stenålder, järnålder',
+          'Järnålder, bronsålder, stenålder',
+          'Stenålder, järnålder, bronsålder'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
   // ── ANTIKEN ──────────────────────────────────────────────
   {
     id: 'antiken',
@@ -523,6 +611,182 @@ const QUIZZES = [
           'År 395 e.Kr. – riket sprängdes i bitar av inre uppror',
           'År 1453 e.Kr. – osmanerna erövrade huvudstaden Rom',
           'År 500 f.Kr. – perserkungens arméer intog Rom'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── ANTIKEN – FÖRDJUPNING ───────────────────────────────
+  {
+    id: 'antiken-fordjupning',
+    name: 'Antiken – fördjupning',
+    questions: [
+      {
+        q: 'Vad kallades de självstyrande grekiska stadsstaterna, till exempel Aten och Sparta?',
+        opts: [
+          'Poliser (poleis)',
+          'Provinser',
+          'Kolonier',
+          'Furstendömen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken filosof var Platons lärare?',
+        opts: [
+          'Sokrates',
+          'Aristoteles',
+          'Herodotos',
+          'Pythagoras'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Var hölls de antika olympiska spelen?',
+        opts: [
+          'I Olympia',
+          'I Aten',
+          'I Sparta',
+          'I Korinth'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallas de krig som Rom och Karthago utkämpade mot varandra?',
+        opts: [
+          'Puniska krigen',
+          'Perserkrigen',
+          'Peloponnesiska kriget',
+          'Gallerkrigen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vem var diktator i Rom och mördades år 44 f.Kr.?',
+        opts: [
+          'Julius Caesar',
+          'Augustus',
+          'Nero',
+          'Hannibal'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vem blev Roms förste kejsare år 27 f.Kr.?',
+        opts: [
+          'Augustus',
+          'Julius Caesar',
+          'Konstantin',
+          'Nero'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad innebar Pax Romana?',
+        opts: [
+          'En lång period av relativ fred och stabilitet inom Romarriket',
+          'En lag som gav alla romare rösträtt',
+          'Ett krig mellan Rom och Grekland',
+          'Ett avtal som delade Romarriket i två delar'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken kejsare förknippas med att kristendomen blev tillåten i Romarriket år 313?',
+        opts: [
+          'Konstantin den store',
+          'Nero',
+          'Hadrianus',
+          'Diocletianus'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── VIKINGATIDEN ────────────────────────────────────────
+  {
+    id: 'vikingatiden',
+    name: 'Vikingatiden',
+    questions: [
+      {
+        q: 'Ungefär vilka år brukar vikingatiden dateras till?',
+        opts: [
+          'Ca 800–1050',
+          'Ca 500–800',
+          'Ca 1050–1350',
+          'Ca 1350–1520'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilket kloster utanför Englands ostkust plundrades år 793 och brukar ses som vikingatidens början?',
+        opts: [
+          'Lindisfarne',
+          'Iona',
+          'Westminster',
+          'Canterbury'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallades den församling där fria män under vikingatiden avgjorde tvister och fattade beslut?',
+        opts: [
+          'Tinget',
+          'Riksdagen',
+          'Hirden',
+          'Konsistoriet'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallades de skandinaver som färdades österut över floderna mot dagens Ryssland och Ukraina?',
+        opts: [
+          'Varjager',
+          'Normander',
+          'Goter',
+          'Hunner'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallades de ofria människorna under vikingatiden?',
+        opts: [
+          'Trälar',
+          'Karlar',
+          'Jarlar',
+          'Hirdmän'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken religion hade man i Norden före kristnandet, med gudar som Oden, Tor och Frej?',
+        opts: [
+          'Asatro',
+          'Islam',
+          'Buddhism',
+          'Judendom'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad är runstenar?',
+        opts: [
+          'Stenar med runinskrifter, ofta resta till minne av avlidna',
+          'Gränsmarkeringar mellan kungarikena',
+          'Altare där man offrade till gudarna',
+          'Sjömärken som visade vägen för handelsfartyg'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kallades det område i nordöstra England som stod under vikingarnas styre och lag?',
+        opts: [
+          'Danelagen',
+          'Normandie',
+          'Vinland',
+          'Gardarike'
         ],
         correct: 0
       }
@@ -699,6 +963,270 @@ const QUIZZES = [
           '1789',
           '1721',
           '1740'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── RENÄSSANSEN ─────────────────────────────────────────
+  {
+    id: 'renassansen',
+    name: 'Renässansen och humanismen',
+    questions: [
+      {
+        q: 'Vad betyder ordet renässans?',
+        opts: [
+          'Pånyttfödelse',
+          'Upplysning',
+          'Frihet',
+          'Erövring'
+        ],
+        correct: 0
+      },
+      {
+        q: 'I vilket land började renässansen?',
+        opts: [
+          'Italien',
+          'Frankrike',
+          'England',
+          'Tyskland'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken rik bankirfamilj i Florens stödde konstnärer och lärde under renässansen?',
+        opts: [
+          'Medici',
+          'Borgia',
+          'Habsburg',
+          'Fugger'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad kännetecknar humanismen?',
+        opts: [
+          'Ett stort intresse för människan och för antikens texter och idéer',
+          'Tron att människan i första hand är syndig och måste lyda kyrkan',
+          'Tron på att kungen styr genom Guds rätt',
+          'Strävan att återinföra feodalismen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken uppfinning från 1400-talet gjorde att böcker och idéer kunde spridas snabbt?',
+        opts: [
+          'Boktryckarkonsten med rörliga bokstäver',
+          'Kompassen',
+          'Kikaren',
+          'Ångmaskinen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken konstnär och uppfinnare målade Mona Lisa?',
+        opts: [
+          'Leonardo da Vinci',
+          'Michelangelo',
+          'Rafael',
+          'Botticelli'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken polsk astronom publicerade 1543 teorin att jorden och planeterna kretsar kring solen?',
+        opts: [
+          'Nicolaus Copernicus',
+          'Ptolemaios',
+          'Isaac Newton',
+          'Tycho Brahe'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken metod blev central i den vetenskapliga revolutionen på 1500- och 1600-talen?',
+        opts: [
+          'Noggranna observationer och experiment',
+          'Att lita på antikens auktoriteter',
+          'Att tolka Bibeln bokstavligt',
+          'Att fråga kungen eller kyrkan'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── STORMAKTSTIDEN ──────────────────────────────────────
+  {
+    id: 'stormaktstiden',
+    name: 'Sveriges stormaktstid',
+    questions: [
+      {
+        q: 'Vilka år brukar Sveriges stormaktstid räknas som?',
+        opts: [
+          'Ca 1611–1718',
+          'Ca 1523–1611',
+          'Ca 1718–1772',
+          'Ca 1397–1523'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken svensk kung stupade i slaget vid Lützen 1632?',
+        opts: [
+          'Gustav II Adolf',
+          'Karl X Gustav',
+          'Karl XII',
+          'Gustav Vasa'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilket stort krig utkämpades 1618–1648 och Sverige deltog i det från 1630?',
+        opts: [
+          'Trettioåriga kriget',
+          'Hundraårskriget',
+          'Sjuåriga kriget',
+          'Stora nordiska kriget'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken fred år 1648 avslutade trettioåriga kriget?',
+        opts: [
+          'Westfaliska freden',
+          'Roskildefreden',
+          'Nystadsfreden',
+          'Freden i Brömsebro'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilka landskap fick Sverige av Danmark i Roskildefreden 1658?',
+        opts: [
+          'Skåne, Halland, Blekinge och Bohuslän',
+          'Norrland, Dalarna och Värmland',
+          'Estland, Livland och Ingermanland',
+          'Pommern och Bremen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilket slag 1709 blev en vändpunkt i stora nordiska kriget, till Sveriges nackdel?',
+        opts: [
+          'Poltava',
+          'Narva',
+          'Lützen',
+          'Lund'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken fred år 1721 innebar att Sverige förlorade sin stormaktsställning och Ryssland blev ledande i Norden?',
+        opts: [
+          'Nystadsfreden',
+          'Roskildefreden',
+          'Westfaliska freden',
+          'Stolbovafreden'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken kung genomförde reduktionen på 1680-talet, då gods drogs in till kronan?',
+        opts: [
+          'Karl XI',
+          'Gustav II Adolf',
+          'Karl X Gustav',
+          'Fredrik I'
+        ],
+        correct: 0
+      }
+    ]
+  },
+
+  // ── UPPLYSNINGEN ────────────────────────────────────────
+  {
+    id: 'upplysningen',
+    name: 'Upplysningen och revolutionerna',
+    questions: [
+      {
+        q: 'Vilken händelse den 14 juli 1789 brukar ses som startskottet för franska revolutionen?',
+        opts: [
+          'Stormningen av Bastiljen',
+          'Ludvig XVI:s avrättning',
+          'Napoleons kröning',
+          'Nationalförsamlingens upplösning'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken upplysningstänkare formulerade idén om maktdelning mellan lagstiftande, verkställande och dömande makt?',
+        opts: [
+          'Montesquieu',
+          'Rousseau',
+          'Voltaire',
+          'Hobbes'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilken upplysningstänkare kämpade för yttrandefrihet och kritiserade intolerans och kyrkans makt?',
+        opts: [
+          'Voltaire',
+          'Rousseau',
+          'Descartes',
+          'Luther'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad var Encyklopedin, som gavs ut från 1751 med Diderot som redaktör?',
+        opts: [
+          'Ett stort verk som samlade och spred upplysningens kunskap',
+          'En religiös skrift som försvarade kyrkans lära',
+          'En lagbok för det franska kungariket',
+          'Ett brev från adeln till kungen'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilket år genomförde Gustav III en statskupp som avslutade frihetstiden?',
+        opts: [
+          '1772',
+          '1718',
+          '1789',
+          '1809'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad menas med upplyst envälde (upplyst despotism)?',
+        opts: [
+          'En härskare som styrde enväldigt men genomförde reformer inspirerade av upplysningen',
+          'Ett styre där folket valde kungen',
+          'Ett styre där adeln delade makten med kungen',
+          'Ett styre där kyrkan hade den högsta makten'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vilka tillhörde Frankrikes tredje stånd före revolutionen?',
+        opts: [
+          'Alla som varken var präster eller adel, till exempel borgare, bönder och arbetare',
+          'Enbart de rikaste köpmännen',
+          'Kungens närmaste rådgivare',
+          'Prästerskapets lägre grad'
+        ],
+        correct: 0
+      },
+      {
+        q: 'Vad slog den amerikanska självständighetsförklaringen från 1776 bland annat fast?',
+        opts: [
+          'Att alla människor är skapade lika och har naturliga rättigheter som liv och frihet',
+          'Att kolonierna skulle få en egen kung',
+          'Att slaveriet skulle avskaffas direkt',
+          'Att kolonierna skulle förbli engelska'
         ],
         correct: 0
       }
