@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Historietest – Antiken till 1789</title>
+  <title>Historietester om Källor, källkritik och historiebruk, Forntiden till och med Den nya tiden</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
@@ -366,8 +366,8 @@
 
 <header>
   <div class="logo">
-    Historietest
-    <span>Antiken till 1789</span>
+    Historietester
+    <span>om Källor, källkritik och historiebruk, Forntiden till och med Den nya tiden</span>
   </div>
   <div class="user-info" id="user-info" style="display:none">
     <span id="user-name"></span>
@@ -440,6 +440,134 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 // Add more quizzes here when ready. Each quiz = { id, name, questions[] }
 // question = { q, opts: ['A','B','C','D'], correct: 0-3 }
 const QUIZZES = [
+
+  // ── KÄLLOR, KÄLLKRITIK OCH HISTORIEBRUK ─────────────────
+  {
+    id: "kallor",
+    name: "Källor, källkritik och historiebruk",
+    questions: [
+      {
+        q: "Vid utredningen av mordet på Olof Palme fanns både vittnesförhör och tekniska bevis. Vilka av dem är berättande källor?",
+        opts: [
+          "Vittnesförhören",
+          "Kulorna från mordplatsen",
+          "Blodpölen på marken",
+          "Krutstänken på hans kläder"
+        ],
+        correct: 0
+      },
+      {
+        q: "När kan böcker som skrivits om Karl XII användas som kvarlevor?",
+        opts: [
+          "När man undersöker hur synen på kungen har förändrats över tid",
+          "När man vill hämta faktauppgifter om vad kungen gjorde",
+          "När boken skrevs medan kungen levde",
+          "Aldrig – böcker är alltid berättande källor"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad menas med ett funktionellt källbegrepp?",
+        opts: [
+          "Det är hur historikern väljer att använda materialet som avgör om det är en berättande källa eller en kvarleva",
+          "Det är typen av källa – text eller föremål – som avgör om den är en berättande källa eller en kvarleva",
+          "En källa är bara användbar om den fungerar som bevis i en rättegång",
+          "Alla källor ska behandlas som berättande källor tills motsatsen är bevisad"
+        ],
+        correct: 0
+      },
+      {
+        q: "Hur avslöjades att Hitlers dagböcker, som tidningen Stern köpte 1983, var förfalskade?",
+        opts: [
+          "Papperet och bläcket som använts fanns inte under andra världskriget",
+          "Handstilen liknade inte Hitlers",
+          "Förfalskaren erkände direkt när dagböckerna publicerades",
+          "Dagböckerna innehöll händelser som skett efter Hitlers död"
+        ],
+        correct: 0
+      },
+      {
+        q: "Varför kan en förfalskning som Sions vises protokoll ändå vara användbar för historiker?",
+        opts: [
+          "Den är en kvarleva från den antijudiska propagandan och kan användas för att undersöka antisemitismens historia",
+          "Den är en trovärdig berättande källa om vad som sades vid den judiska kongressen i Basel",
+          "Den visar hur den ryska polisen arbetade för att skydda judarna",
+          "Den kan inte användas alls, eftersom förfalskningar är värdelösa"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vilka tre moment består den klassiska källkritiken av?",
+        opts: [
+          "Yttre kritik, tolkning och inre kritik",
+          "Tidssamband, beroende och tendens",
+          "Upphovsman, syfte och ursprung",
+          "Yttre kritik, beroende och tendens"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad gör man i den yttre kritiken?",
+        opts: [
+          "Man försöker fastställa källans tillkomstsituation: när, var och av vem den kom till, och vilken typ av källa det är",
+          "Man beskriver källans innehåll och försöker förstå vilket budskap den vill förmedla",
+          "Man avgör hur trovärdiga uppgifterna är med hjälp av tid, beroende och tendens",
+          "Man jämför källan med andra källor för att se om de är beroende av varandra"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad innebär det att två källor är beroende av varandra?",
+        opts: [
+          "Den ena bygger på den andra, så de kan inte användas för att bekräfta varandras påståenden",
+          "De är skrivna av samma person och är därför extra trovärdiga",
+          "De är vinklade åt olika håll, så uppgifter de är överens om är troligen sanna",
+          "De kommer från samma tid och är därför lika trovärdiga"
+        ],
+        correct: 0
+      },
+      {
+        q: "Varför måste man vara försiktig med Peder Svarts krönika om Gustav Vasa?",
+        opts: [
+          "Han fick i uppdrag av kungen att framställa honom som självuppoffrande och god landsfader",
+          "Han skrev den flera hundra år efter Gustav Vasas död",
+          "Han var dansk och ville svärta ner den svenske kungen",
+          "Han hade aldrig träffat Gustav Vasa och byggde bara på rykten"
+        ],
+        correct: 0
+      },
+      {
+        q: "Olof Palme jämförde 1972 USA:s bombningar av Hanoi med nazisternas massmord i Treblinka. Vilket historiebruk är det?",
+        opts: [
+          "Politiskt-ideologiskt",
+          "Moraliskt",
+          "Existentiellt",
+          "Vetenskapligt"
+        ],
+        correct: 0
+      },
+      {
+        q: "År 1993 firades den svenska historiens år, för att ge svenskar en gemensam historisk identitet i en tid av snabba förändringar. Vilket historiebruk är det?",
+        opts: [
+          "Existentiellt",
+          "Politiskt-ideologiskt",
+          "Kommersiellt",
+          "Moraliskt"
+        ],
+        correct: 0
+      },
+      {
+        q: "Att uppmärksamma Sveriges delaktighet i 1600-talets slavhandel är ett exempel på vilket historiebruk?",
+        opts: [
+          "Moraliskt",
+          "Existentiellt",
+          "Politiskt-ideologiskt",
+          "Icke-bruk"
+        ],
+        correct: 0
+      }
+    ]
+  },
 
   // ── FORNTIDEN OCH EPOKERNA ──────────────────────────────
   {
@@ -1239,134 +1367,6 @@ const QUIZZES = [
           "Gustav III mördades 1772, och riksdagen tog makten",
           "Karl XI införde envälde på en riksdag 1772",
           "Revolutionen i Frankrike 1789 spred sig till Sverige"
-        ],
-        correct: 0
-      }
-    ]
-  },
-
-  // ── KÄLLOR, KÄLLKRITIK OCH HISTORIEBRUK ─────────────────
-  {
-    id: "kallor",
-    name: "Källor, källkritik och historiebruk",
-    questions: [
-      {
-        q: "Vid utredningen av mordet på Olof Palme fanns både vittnesförhör och tekniska bevis. Vilka av dem är berättande källor?",
-        opts: [
-          "Vittnesförhören",
-          "Kulorna från mordplatsen",
-          "Blodpölen på marken",
-          "Krutstänken på hans kläder"
-        ],
-        correct: 0
-      },
-      {
-        q: "När kan böcker som skrivits om Karl XII användas som kvarlevor?",
-        opts: [
-          "När man undersöker hur synen på kungen har förändrats över tid",
-          "När man vill hämta faktauppgifter om vad kungen gjorde",
-          "När boken skrevs medan kungen levde",
-          "Aldrig – böcker är alltid berättande källor"
-        ],
-        correct: 0
-      },
-      {
-        q: "Vad menas med ett funktionellt källbegrepp?",
-        opts: [
-          "Det är hur historikern väljer att använda materialet som avgör om det är en berättande källa eller en kvarleva",
-          "Det är typen av källa – text eller föremål – som avgör om den är en berättande källa eller en kvarleva",
-          "En källa är bara användbar om den fungerar som bevis i en rättegång",
-          "Alla källor ska behandlas som berättande källor tills motsatsen är bevisad"
-        ],
-        correct: 0
-      },
-      {
-        q: "Hur avslöjades att Hitlers dagböcker, som tidningen Stern köpte 1983, var förfalskade?",
-        opts: [
-          "Papperet och bläcket som använts fanns inte under andra världskriget",
-          "Handstilen liknade inte Hitlers",
-          "Förfalskaren erkände direkt när dagböckerna publicerades",
-          "Dagböckerna innehöll händelser som skett efter Hitlers död"
-        ],
-        correct: 0
-      },
-      {
-        q: "Varför kan en förfalskning som Sions vises protokoll ändå vara användbar för historiker?",
-        opts: [
-          "Den är en kvarleva från den antijudiska propagandan och kan användas för att undersöka antisemitismens historia",
-          "Den är en trovärdig berättande källa om vad som sades vid den judiska kongressen i Basel",
-          "Den visar hur den ryska polisen arbetade för att skydda judarna",
-          "Den kan inte användas alls, eftersom förfalskningar är värdelösa"
-        ],
-        correct: 0
-      },
-      {
-        q: "Vilka tre moment består den klassiska källkritiken av?",
-        opts: [
-          "Yttre kritik, tolkning och inre kritik",
-          "Tidssamband, beroende och tendens",
-          "Upphovsman, syfte och ursprung",
-          "Yttre kritik, beroende och tendens"
-        ],
-        correct: 0
-      },
-      {
-        q: "Vad gör man i den yttre kritiken?",
-        opts: [
-          "Man försöker fastställa källans tillkomstsituation: när, var och av vem den kom till, och vilken typ av källa det är",
-          "Man beskriver källans innehåll och försöker förstå vilket budskap den vill förmedla",
-          "Man avgör hur trovärdiga uppgifterna är med hjälp av tid, beroende och tendens",
-          "Man jämför källan med andra källor för att se om de är beroende av varandra"
-        ],
-        correct: 0
-      },
-      {
-        q: "Vad innebär det att två källor är beroende av varandra?",
-        opts: [
-          "Den ena bygger på den andra, så de kan inte användas för att bekräfta varandras påståenden",
-          "De är skrivna av samma person och är därför extra trovärdiga",
-          "De är vinklade åt olika håll, så uppgifter de är överens om är troligen sanna",
-          "De kommer från samma tid och är därför lika trovärdiga"
-        ],
-        correct: 0
-      },
-      {
-        q: "Varför måste man vara försiktig med Peder Svarts krönika om Gustav Vasa?",
-        opts: [
-          "Han fick i uppdrag av kungen att framställa honom som självuppoffrande och god landsfader",
-          "Han skrev den flera hundra år efter Gustav Vasas död",
-          "Han var dansk och ville svärta ner den svenske kungen",
-          "Han hade aldrig träffat Gustav Vasa och byggde bara på rykten"
-        ],
-        correct: 0
-      },
-      {
-        q: "Olof Palme jämförde 1972 USA:s bombningar av Hanoi med nazisternas massmord i Treblinka. Vilket historiebruk är det?",
-        opts: [
-          "Politiskt-ideologiskt",
-          "Moraliskt",
-          "Existentiellt",
-          "Vetenskapligt"
-        ],
-        correct: 0
-      },
-      {
-        q: "År 1993 firades den svenska historiens år, för att ge svenskar en gemensam historisk identitet i en tid av snabba förändringar. Vilket historiebruk är det?",
-        opts: [
-          "Existentiellt",
-          "Politiskt-ideologiskt",
-          "Kommersiellt",
-          "Moraliskt"
-        ],
-        correct: 0
-      },
-      {
-        q: "Att uppmärksamma Sveriges delaktighet i 1600-talets slavhandel är ett exempel på vilket historiebruk?",
-        opts: [
-          "Moraliskt",
-          "Existentiellt",
-          "Politiskt-ideologiskt",
-          "Icke-bruk"
         ],
         correct: 0
       }
