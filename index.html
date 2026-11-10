@@ -441,176 +441,196 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 // question = { q, opts: ['A','B','C','D'], correct: 0-3 }
 const QUIZZES = [
 
-  // ── FORNTIDEN ───────────────────────────────────────────
+  // ── FORNTIDEN OCH EPOKERNA ──────────────────────────────
   {
-    id: 'forntiden',
-    name: 'Forntiden',
+    id: "forntiden",
+    name: "Forntiden och historiens epoker",
     questions: [
       {
-        q: 'Vad brukar vara gränsen mellan förhistorisk tid och historisk tid?',
+        q: "Vad markerar början på den historiska tiden?",
         opts: [
-          'Att skriftspråk uppstår och skriftliga källor finns',
-          'Att jordbruket uppfinns',
-          'Att hjulet uppfinns',
-          'Att Romarriket grundas'
+          "De första skriftliga källorna",
+          "De första redskapen av metall",
+          "Att människan började bruka jorden",
+          "De första städerna"
         ],
         correct: 0
       },
       {
-        q: 'Vad innebar den neolitiska revolutionen (jordbruksrevolutionen)?',
+        q: "Vad kallas läran om tid, alltså hur händelser förhåller sig till varandra i tidsföljd?",
         opts: [
-          'Människor började odla och hålla husdjur och blev fast bosatta',
-          'Människor lärde sig att göra upp eld',
-          'Människor började tillverka verktyg av järn',
-          'Människor började skriva med kilskrift'
+          "Kronologi",
+          "Periodisering",
+          "Tideräkning",
+          "Epokbegrepp"
         ],
         correct: 0
       },
       {
-        q: 'Hur levde människorna innan jordbruket kom?',
+        q: "Vad kännetecknar en mekanisk periodisering?",
         opts: [
-          'Som jägare och samlare som flyttade efter bytesdjur och växtlighet',
-          'Som bönder i små byar',
-          'Som köpmän i stora städer',
-          'Som underlydande i stora riken'
+          "Historien delas in i avsnitt med ett visst antal år, till exempel decennier, utan hänsyn till vad som hände",
+          "Historien delas in efter händelser och företeelser som håller ihop en period",
+          "Historien delas in efter vilka kungaätter som regerade",
+          "Historien delas in efter vilka stora krig som utkämpades"
         ],
         correct: 0
       },
       {
-        q: 'Mellan vilka två floder låg Mesopotamien?',
+        q: "Hur avgränsas medeltiden i Sverige?",
         opts: [
-          'Eufrat och Tigris',
-          'Nilen och Eufrat',
-          'Indus och Ganges',
-          'Donau och Rhen'
+          "Från omkring 1050, då vikingatiden slutade, till 1523 då Gustav Vasa valdes till kung",
+          "Från 476, då Västrom föll, till början av 1500-talet",
+          "Från omkring 800, då vikingatiden började, till 1397 då Kalmarunionen bildades",
+          "Från omkring 1050, då vikingatiden slutade, till 1611 då stormaktstiden började"
         ],
         correct: 0
       },
       {
-        q: 'Varför var Nilens årliga översvämningar så viktiga för Egypten?',
+        q: "Var har människan sitt ursprung, och när uppstod Homo sapiens?",
         opts: [
-          'De lämnade kvar fruktbar jord som gjorde jordbruk möjligt i en öken',
-          'De skyddade landet mot fiender',
-          'De gjorde att man kunde bygga pyramider av lera',
-          'De gav Egypten tillgång till havet'
+          "I Afrika, för omkring 300 000 år sedan",
+          "I Afrika, för omkring tre miljoner år sedan",
+          "I Asien, för omkring 300 000 år sedan",
+          "I Mellanöstern, för omkring 10 000 år sedan"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallades Egyptens härskare, som ansågs ha en gudomlig status?',
+        q: "Vilket syfte hade sumerernas skriftspråk från början?",
         opts: [
-          'Farao',
-          'Sultan',
-          'Konsul',
-          'Satrap'
+          "Ett praktiskt syfte: att underlätta hanteringen av skatter och varor som fördes in till templen",
+          "Ett religiöst syfte: att skriva ner berättelser om gudarna",
+          "Ett politiskt syfte: att skriva lagar som skulle gälla i hela riket",
+          "Ett praktiskt syfte: att kunna skicka brev till handelspartner i Egypten"
         ],
         correct: 0
       },
       {
-        q: 'Vad är kilskrift och vilket folk började använda den?',
+        q: "Varför kom järnet att revolutionera människornas tillvaro?",
         opts: [
-          'Ett av världens äldsta skriftsystem, som sumererna i Mesopotamien använde',
-          'Egyptiernas bildskrift som användes på tempelväggar',
-          'Ett skriftsystem som grekerna utvecklade av det feniciska alfabetet',
-          'Romarnas skrift som användes i lagtexter'
+          "Guld och koppar var för mjuka och brons för dyrt – med järn blev redskapen effektivare och fler kunde skaffa dem",
+          "Järn var vackrare än brons och användes därför till smycken åt överklassen",
+          "Järn var mjukare än brons och därför lättare att forma till redskap",
+          "Järn kunde bara utvinnas i Norden och blev därför en viktig exportvara"
         ],
         correct: 0
       },
       {
-        q: 'I vilken ordning kommer perioderna i Sveriges förhistoria?',
+        q: "Ungefär när kom jordbruket till Norden?",
         opts: [
-          'Stenålder, bronsålder, järnålder',
-          'Bronsålder, stenålder, järnålder',
-          'Järnålder, bronsålder, stenålder',
-          'Stenålder, järnålder, bronsålder'
+          "Omkring 4 200 f.Kr.",
+          "Omkring 10 000 f.Kr.",
+          "Omkring 12 000 f.Kr.",
+          "Omkring 1 800 f.Kr."
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad kallas tiden då människorna i Norden lärde sig tillverka redskap och vapen av järn, och när började den?",
+        opts: [
+          "Järnåldern, på 500-talet f.Kr.",
+          "Järnåldern, omkring 1 800 f.Kr.",
+          "Bronsåldern, på 500-talet f.Kr.",
+          "Bronsåldern, omkring 1 800 f.Kr."
+        ],
+        correct: 0
+      },
+      {
+        q: "Varför stämmer inte dagens populära bild av vikingen med verkligheten?",
+        opts: [
+          "De flesta i Skandinavien var bönder eller fiskare och ingen hade horn på hjälmen – bilden skapades på 1800-talet för att förhärliga den egna historien",
+          "De flesta vikingar var krigare, men bilden från 1800-talet gjorde dem till fredliga handelsmän",
+          "Vikingarna hade horn på hjälmen bara i strid, men 1800-talets bild visar dem så hela tiden",
+          "Bilden kommer från munkarnas krönikor på medeltiden, som ville svärta ner de hedniska vikingarna"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── ANTIKEN ──────────────────────────────────────────────
+  // ── ANTIKEN ─────────────────────────────────────────────
   {
-    id: 'antiken',
-    name: 'Antiken',
+    id: "antiken",
+    name: "Antiken",
     questions: [
       {
-        q: 'Vad kallas den historiska period som sträcker sig från ca 700 f.Kr. till ungefär 500 e.Kr.?',
+        q: "Vad kallas den historiska period som sträcker sig från ca 700 f.Kr. till ungefär 500 e.Kr.?",
         opts: [
-          'Antiken',
-          'Medeltiden',
-          'Renässansen',
-          'Den nya tiden'
+          "Antiken",
+          "Medeltiden",
+          "Renässansen",
+          "Den nya tiden"
         ],
         correct: 0
       },
       {
-        q: 'Vad innebär begreppet "demokrati" och i vilken stad uppstod det under antiken?',
+        q: "Vad innebär begreppet \"demokrati\" och i vilken stad uppstod det under antiken?",
         opts: [
-          'Folkstyre – det uppstod i den grekiska stadsstaten Aten på 500-talet f.Kr.',
-          'Folkstyre – det uppstod i den romerska republiken på 500-talet f.Kr.',
-          'Lagarnas styre – det uppstod i Sparta under 700-talet f.Kr.',
-          'Konungarnas styre – det uppstod i Persien och spreds därifrån till Grekland'
+          "Folkstyre – det uppstod i den grekiska stadsstaten Aten på 500-talet f.Kr.",
+          "Folkstyre – det uppstod i den romerska republiken på 500-talet f.Kr.",
+          "Lagarnas styre – det uppstod i Sparta under 700-talet f.Kr.",
+          "Konungarnas styre – det uppstod i Persien och spreds därifrån till Grekland"
         ],
         correct: 0
       },
       {
-        q: 'Vilka hade rösträtt i den atenska folkförsamlingen?',
+        q: "Vilka hade rösträtt i den atenska folkförsamlingen?",
         opts: [
-          'Fria män över 18 år',
-          'Alla invånare inklusive slavar och kvinnor',
-          'Män och kvinnor som var medborgare',
-          'Enbart adeln och de rikaste köpmännen'
+          "Fria män över 18 år",
+          "Alla invånare inklusive slavar och kvinnor",
+          "Män och kvinnor som var medborgare",
+          "Enbart adeln och de rikaste köpmännen"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas det krig som bröt ut på 430-talet f.Kr. mellan Aten och Sparta?',
+        q: "Vad kallas det krig som bröt ut på 430-talet f.Kr. mellan Aten och Sparta?",
         opts: [
-          'Det peloponnesiska kriget',
-          'Perserkrigen',
-          'Det trojanska kriget',
-          'Maratonslaget'
+          "Det peloponnesiska kriget",
+          "Perserkrigen",
+          "Det trojanska kriget",
+          "Maratonslaget"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år dog Alexander den store och vad hände med hans välde?',
+        q: "Vilket år dog Alexander den store och vad hände med hans välde?",
         opts: [
-          'Han dog 323 f.Kr. och hans välde splittrades',
-          'Han dog 490 f.Kr. och hans välde ärvdes av Augustus',
-          'Han dog 44 f.Kr. och väldet omvandlades till Romarriket',
-          'Han dog 476 e.Kr. och väldet föll till de germanska folken'
+          "Han dog 323 f.Kr. och hans välde splittrades",
+          "Han dog 490 f.Kr. och hans välde ärvdes av Augustus",
+          "Han dog 44 f.Kr. och väldet omvandlades till Romarriket",
+          "Han dog 476 e.Kr. och väldet föll till de germanska folken"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas styrelseformen i Rom under perioden 509–27 f.Kr.?',
+        q: "Vad kallas styrelseformen i Rom under perioden 509–27 f.Kr.?",
         opts: [
-          'Republiken',
-          'Demokratin',
-          'Kejsardömet',
-          'Tyranniet'
+          "Republiken",
+          "Demokratin",
+          "Kejsardömet",
+          "Tyranniet"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år delades Romarriket i två delar?',
+        q: "Vilket år delades Romarriket i två delar?",
         opts: [
-          'År 395 e.Kr.',
-          'År 476 e.Kr.',
-          'År 323 f.Kr.',
-          'År 44 f.Kr.'
+          "År 395 e.Kr.",
+          "År 476 e.Kr.",
+          "År 323 f.Kr.",
+          "År 44 f.Kr."
         ],
         correct: 0
       },
       {
-        q: 'Vilket år föll Västromerska riket och vad innebar det?',
+        q: "Vilket år föll Västromerska riket och vad innebar det?",
         opts: [
-          'År 476 e.Kr. – en germansk fältherre avsatte den västromerske kejsaren',
-          'År 395 e.Kr. – riket sprängdes i bitar av inre uppror',
-          'År 1453 e.Kr. – osmanerna erövrade huvudstaden Rom',
-          'År 500 f.Kr. – perserkungens arméer intog Rom'
+          "År 476 e.Kr. – en germansk fältherre avsatte den västromerske kejsaren",
+          "År 395 e.Kr. – riket sprängdes i bitar av inre uppror",
+          "År 1453 e.Kr. – osmanerna erövrade huvudstaden Rom",
+          "År 500 f.Kr. – perserkungens arméer intog Rom"
         ],
         correct: 0
       }
@@ -619,614 +639,734 @@ const QUIZZES = [
 
   // ── ANTIKEN – FÖRDJUPNING ───────────────────────────────
   {
-    id: 'antiken-fordjupning',
-    name: 'Antiken – fördjupning',
+    id: "antiken-fordjupning",
+    name: "Antiken – fördjupning",
     questions: [
       {
-        q: 'Vad kallades de självstyrande grekiska stadsstaterna, till exempel Aten och Sparta?',
+        q: "Varför anlade grekerna kolonier runt Medelhavet och vid Svarta havet?",
         opts: [
-          'Poliser (poleis)',
-          'Provinser',
-          'Kolonier',
-          'Furstendömen'
+          "En kraftig befolkningsökning gjorde att de behövde nya landområden att bosätta sig på",
+          "De ville sprida demokratin till andra folk runt Medelhavet",
+          "De flydde undan perserna efter förlusten vid Maraton",
+          "De behövde hamnar för den krigsflotta som skulle anfalla Rom"
         ],
         correct: 0
       },
       {
-        q: 'Vilken filosof var Platons lärare?',
+        q: "Hur skilde sig kvinnornas ställning i Sparta från den i Aten?",
         opts: [
-          'Sokrates',
-          'Aristoteles',
-          'Herodotos',
-          'Pythagoras'
+          "I Sparta var den starkare – kvinnorna fick utbildning, hade arvsrätt och kunde röra sig fritt",
+          "I Sparta var den svagare – kvinnorna fick inte visa sig utomhus och kunde inte ärva",
+          "I Sparta var den starkare – kvinnorna hade rösträtt i folkförsamlingen",
+          "Det fanns ingen skillnad – i båda städerna var kvinnorna omyndiga och fick bara spinna och väva"
         ],
         correct: 0
       },
       {
-        q: 'Var hölls de antika olympiska spelen?',
+        q: "Vilken filosof ställde frågor till sina elever för att få dem att nå kunskap och insikt, och är känd genom sin elev Platons dialoger?",
         opts: [
-          'I Olympia',
-          'I Aten',
-          'I Sparta',
-          'I Korinth'
+          "Sokrates",
+          "Aristoteles",
+          "Pythagoras",
+          "Feidippides"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas de krig som Rom och Karthago utkämpade mot varandra?',
+        q: "Vad blev en följd av Alexander den stores fälttåg?",
         opts: [
-          'Puniska krigen',
-          'Perserkrigen',
-          'Peloponnesiska kriget',
-          'Gallerkrigen'
+          "Västerländskt och österländskt smälte samman – handel, hantverk och penningekonomi utvecklades",
+          "Grekland blev en provins i det persiska riket",
+          "Demokratin spreds från Aten till Egypten och Indien",
+          "Det grekiska språket försvann och ersattes av persiska"
         ],
         correct: 0
       },
       {
-        q: 'Vem var diktator i Rom och mördades år 44 f.Kr.?',
+        q: "Varför sjönk lönerna i Rom när riket växte, så att många bönder flyttade till städerna och blev proletärer?",
         opts: [
-          'Julius Caesar',
-          'Augustus',
-          'Nero',
-          'Hannibal'
+          "Krigen gav många krigsfångar som blev slavar, så de stora jordägarna fick billig arbetskraft",
+          "Billig säd från Kartago konkurrerade ut de romerska bönderna",
+          "Kejsarna höjde skatterna för att betala soldaterna",
+          "Germanerna plundrade jordbruken i norra Italien"
         ],
         correct: 0
       },
       {
-        q: 'Vem blev Roms förste kejsare år 27 f.Kr.?',
+        q: "Hur styrdes Rom under republiken (509–27 f.Kr.)?",
         opts: [
-          'Augustus',
-          'Julius Caesar',
-          'Konstantin',
-          'Nero'
+          "Två konsuler styrde, med senaten och folkförsamlingen bredvid sig",
+          "En kejsare styrde, med senaten som rådgivare",
+          "En konsul valdes på livstid av folkförsamlingen",
+          "Etruskiska kungar styrde, med senaten som rådgivare"
         ],
         correct: 0
       },
       {
-        q: 'Vad innebar Pax Romana?',
+        q: "Varför blev armén ett verktyg för generaler som ville göra politisk karriär?",
         opts: [
-          'En lång period av relativ fred och stabilitet inom Romarriket',
-          'En lag som gav alla romare rösträtt',
-          'Ett krig mellan Rom och Grekland',
-          'Ett avtal som delade Romarriket i två delar'
+          "Värnpliktsarmén ersattes av yrkessoldater, som ofta blev mer lojala med sin befälhavare än med staten",
+          "Yrkesarmén ersattes av värnpliktiga, som fick rösta på sin befälhavare",
+          "Senaten lät generalerna utse konsulerna",
+          "Soldaterna fick medborgarskap först när deras general blev konsul"
         ],
         correct: 0
       },
       {
-        q: 'Vilken kejsare förknippas med att kristendomen blev tillåten i Romarriket år 313?',
+        q: "Vad hände år 45 f.Kr.?",
         opts: [
-          'Konstantin den store',
-          'Nero',
-          'Hadrianus',
-          'Diocletianus'
+          "Julius Caesar lät utropa sig till diktator på livstid",
+          "Julius Caesar mördades av en grupp senatorer",
+          "Octavianus utropade sig till kejsare och tog namnet Augustus",
+          "Kartago besegrades och jämnades med marken"
+        ],
+        correct: 0
+      },
+      {
+        q: "Hur blev kristendomen den dominerande religionen i Romarriket?",
+        opts: [
+          "Kejsaren Konstantin gjorde den till statsreligion på 320-talet, och sedan ökade dess inflytande steg för steg",
+          "Förföljelserna fick de flesta romare att bli kristna redan på 100-talet",
+          "Augustus gjorde den till statsreligion när Jesus föddes",
+          "Germanerna förde med sig kristendomen när de avsatte den siste kejsaren"
+        ],
+        correct: 0
+      },
+      {
+        q: "Hur förklarar historikerna att Västromerska riket föll?",
+        opts: [
+          "Flera faktorer samverkade: inbördeskrig, korruption, svårt att försvara gränserna mot germanerna och ekonomiska problem",
+          "Det föll av en enda orsak – germanerna var militärt överlägsna",
+          "Det föll när araberna erövrade Rom på 600-talet",
+          "Det föll när riket delades 395, eftersom Östrom tog alla rikedomar"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── VIKINGATIDEN ────────────────────────────────────────
+  // ── MEDELTIDEN ──────────────────────────────────────────
   {
-    id: 'vikingatiden',
-    name: 'Vikingatiden',
+    id: "medeltiden",
+    name: "Medeltiden",
     questions: [
       {
-        q: 'Ungefär vilka år brukar vikingatiden dateras till?',
+        q: "Med vilken historisk händelse anses medeltiden ha börjat i Europa?",
         opts: [
-          'Ca 800–1050',
-          'Ca 500–800',
-          'Ca 1050–1350',
-          'Ca 1350–1520'
+          "Västromerska rikets fall år 476",
+          "Karl den stores kröning till kejsare år 800",
+          "Det första korståget år 1096",
+          "Digerdödens ankomst år 1347"
         ],
         correct: 0
       },
       {
-        q: 'Vilket kloster utanför Englands ostkust plundrades år 793 och brukar ses som vikingatidens början?',
+        q: "Vad kallas det samhällssystem under medeltiden där kungen gav mark till stormän mot att de ställde upp med ryttare i krig?",
         opts: [
-          'Lindisfarne',
-          'Iona',
-          'Westminster',
-          'Canterbury'
+          "Feodalism",
+          "Absolutism",
+          "Demokrati",
+          "Merkantilism"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallades den församling där fria män under vikingatiden avgjorde tvister och fattade beslut?',
+        q: "I hur många stånd delades det medeltida samhället in och vilka var de?",
         opts: [
-          'Tinget',
-          'Riksdagen',
-          'Hirden',
-          'Konsistoriet'
+          "Tre stånd: adeln, prästerna och de som arbetade (bönder och hantverkare)",
+          "Fyra stånd: kung, adel, präster och bönder",
+          "Två stånd: fria och ofria",
+          "Fem stånd: kung, riddare, präster, köpmän och bönder"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallades de skandinaver som färdades österut över floderna mot dagens Ryssland och Ukraina?',
+        q: "Ungefär hur stor andel av Europas befolkning dog under digerdöden på 1300-talet?",
         opts: [
-          'Varjager',
-          'Normander',
-          'Goter',
-          'Hunner'
+          "En tredjedel",
+          "En tiondel",
+          "Hälften",
+          "Tre fjärdedelar"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallades de ofria människorna under vikingatiden?',
+        q: "Vilket år kom digerdöden till Norden, med ett pestsmittat skepp som anlöpte Bergens hamn i Norge?",
         opts: [
-          'Trälar',
-          'Karlar',
-          'Jarlar',
-          'Hirdmän'
+          "1349",
+          "1347",
+          "1351",
+          "1389"
         ],
         correct: 0
       },
       {
-        q: 'Vilken religion hade man i Norden före kristnandet, med gudar som Oden, Tor och Frej?',
+        q: "Vilket år genomfördes Stockholms blodbad och vem beordrade det?",
         opts: [
-          'Asatro',
-          'Islam',
-          'Buddhism',
-          'Judendom'
+          "1520, den danske kungen Kristian II",
+          "1523, Gustav Vasa",
+          "1389, den norske kungen",
+          "1497, den tyske kejsaren"
         ],
         correct: 0
       },
       {
-        q: 'Vad är runstenar?',
+        q: "Vad kallas den nordiska union som bildades i slutet av 1300-talet och bestod fram till 1520?",
         opts: [
-          'Stenar med runinskrifter, ofta resta till minne av avlidna',
-          'Gränsmarkeringar mellan kungarikena',
-          'Altare där man offrade till gudarna',
-          'Sjömärken som visade vägen för handelsfartyg'
+          "Kalmarunionen",
+          "Hansan",
+          "Nordiska förbundet",
+          "Östersjöunionen"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallades det område i nordöstra England som stod under vikingarnas styre och lag?',
+        q: "Under vilket sekel anses Sverige ha blivit ett kristet rike med kyrkor i hela landet och en kyrklig organisation?",
         opts: [
-          'Danelagen',
-          'Normandie',
-          'Vinland',
-          'Gardarike'
+          "1200-talet",
+          "900-talet",
+          "1400-talet",
+          "1000-talet"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── MEDELTIDEN ───────────────────────────────────────────
+  // ── MEDELTIDEN – FÖRDJUPNING ────────────────────────────
   {
-    id: 'medeltiden',
-    name: 'Medeltiden',
+    id: "medeltiden-fordjupning",
+    name: "Medeltiden – fördjupning",
     questions: [
       {
-        q: 'Med vilket historiskt händelse anses medeltiden ha börjat i Europa?',
+        q: "Varför fick medeltiden sitt namn?",
         opts: [
-          'Västromerska rikets fall år 476',
-          'Karl den stores kröning till kejsare år 800',
-          'Det första korståget år 1096',
-          'Digerdödens ankomst år 1347'
+          "Lärda män i Italien på 1300- och 1400-talen såg den som en mörk tid mellan antiken och deras egen tid",
+          "Lärda män på 1800-talet såg den som en mellantid före industrialiseringen",
+          "Den låg mitt emellan Kristi födelse och år 2000",
+          "Kyrkan kallade den så eftersom den låg mellan Jesu liv och domedagen"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas det samhällssystem under medeltiden där kungen gav mark till stormän mot att de ställde upp med ryttare i krig?',
+        q: "Vad innebar det att vara livegen?",
         opts: [
-          'Feodalism',
-          'Absolutism',
-          'Demokrati',
-          'Merkantilism'
+          "Man ägde inte jorden man brukade och fick inte flytta utan tillstånd från jordägaren",
+          "Man ägde sin egen jord men fick inte flytta utan tillstånd från kungen",
+          "Man var befriad från skatt mot att man gjorde krigstjänst",
+          "Man ägde sin jord men måste betala skatt i naturaprodukter"
         ],
         correct: 0
       },
       {
-        q: 'I hur många stånd delades det medeltida samhället in och vilka var de?',
+        q: "Vad var ett län?",
         opts: [
-          'Tre stånd: adeln, prästerna och de som arbetade (bönder och hantverkare)',
-          'Fyra stånd: kung, adel, präster och bönder',
-          'Två stånd: fria och ofria',
-          'Fem stånd: kung, riddare, präster, köpmän och bönder'
+          "Ett landområde som kungen delade ut till den som gjorde krigstjänst med häst och ryttare",
+          "En skatt som bönderna betalade i form av smör, kött eller säd",
+          "En förening av köpmän och hantverkare i en stad",
+          "En politisk församling med representanter för de olika stånden"
         ],
         correct: 0
       },
       {
-        q: 'Ungefär hur stor andel av Europas befolkning dog under digerdöden på 1300-talet?',
+        q: "Vad hade skråna till uppgift?",
         opts: [
-          'En tredjedel',
-          'En tiondel',
-          'Hälften',
-          'Tre fjärdedelar'
+          "Att se till att varorna höll god kvalitet och såldes till rätt pris, och att bestämma vem som fick starta tillverkning",
+          "Att samla in skatt från stadens borgare åt kungen",
+          "Att styra staden och stifta stadens lagar",
+          "Att ta hand om stadens fattiga, gamla och sjuka"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år nådde digerdöden Sverige via ett pestsmittat skepp som anlöpte Bergens hamn i Norge?',
+        q: "Vad innebar ett kungadöme av Guds nåde?",
         opts: [
-          '1349',
-          '1347',
-          '1389',
-          '1350'
+          "Kyrkan förklarade att kungen fått sin makt av Gud – och fick i gengäld den världsliga maktens beskydd",
+          "Kungen var också kyrkans överhuvud och kunde utse biskoparna",
+          "Påven valde kungen, som sedan fick styra med kyrkans pengar",
+          "Kungen fick bara regera så länge biskoparna godkände honom"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år genomfördes Stockholms blodbad och vem beordrade det?',
+        q: "Mot vilka riktades det första korståget år 1096?",
         opts: [
-          '1520, den danske kungen Kristian II',
-          '1523, Gustav Vasa',
-          '1389, den norske kungen',
-          '1497, den tyske kejsaren'
+          "Muslimerna som intagit Jerusalem",
+          "De ortodoxa kristna i Konstantinopel",
+          "De hedniska folken kring Östersjön",
+          "De osmanska turkarna som intagit Konstantinopel"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas den nordiska union som bildades i slutet av 1300-talet och bestod fram till 1520?',
+        q: "Varför gynnade digerdöden bönderna?",
         opts: [
-          'Kalmarunionen',
-          'Hansan',
-          'Nordiska förbundet',
-          'Östersjöunionen'
+          "Det blev brist på arbetskraft, så jordägarna tvingades betala högre löner för att bönderna skulle stanna",
+          "Det blev brist på mat, så bönderna kunde ta högre priser för sin säd",
+          "Kyrkan delade ut sin jord till de bönder som överlevde",
+          "Kungen avskaffade skatterna för de bönder som överlevde"
         ],
         correct: 0
       },
       {
-        q: 'Under vilket sekel anses Sverige ha blivit ett kristet rike med kyrkor i hela landet och en kyrklig organisation?',
+        q: "Vilka var de fyra stånden i det svenska medeltida samhället?",
         opts: [
-          '1200-talet',
-          '900-talet',
-          '1400-talet',
-          '1000-talet'
+          "Adel, präster, borgare och bönder",
+          "Kung, adel, präster och bönder",
+          "Adel, präster, köpmän och hantverkare",
+          "Frälse, präster, borgare och torpare"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad var unikt med de svenska böndernas situation i ett europeiskt perspektiv?",
+        opts: [
+          "Ungefär hälften ägde själva sin jord och hade därför en stark ställning och politisk kraft",
+          "Nästan alla var livegna och brukade andras jord",
+          "De var befriade från skatt eftersom de gjorde krigstjänst",
+          "Ungefär hälften bodde i städer och hade burskap"
+        ],
+        correct: 0
+      },
+      {
+        q: "När blev Stockholm Sveriges huvudstad, och under vem?",
+        opts: [
+          "På 1250-talet, under Birger jarl",
+          "År 1389, under drottning Margareta",
+          "År 1523, under Gustav Vasa",
+          "På 1250-talet, under Magnus Ladulås"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── DEN NYA TIDEN ────────────────────────────────────────
+  // ── DEN NYA TIDEN ───────────────────────────────────────
   {
-    id: 'den-nya-tiden',
-    name: 'Den nya tiden',
+    id: "den-nya-tiden",
+    name: "Den nya tiden",
     questions: [
       {
-        q: 'Vilket år "upptäckte" Columbus Amerika?',
+        q: "Vilket år \"upptäckte\" Columbus Amerika?",
         opts: [
-          '1492',
-          '1500',
-          '1488',
-          '1521'
+          "1492",
+          "1500",
+          "1488",
+          "1521"
         ],
         correct: 0
       },
       {
-        q: 'Vilken händelse brukar ses som startskottet för reformationen och vilket år skedde det?',
+        q: "Vilken händelse brukar ses som startskottet för reformationen och vilket år skedde det?",
         opts: [
-          'Martin Luther spikade sina 95 teser på kyrkporten i Wittenberg år 1517',
-          'Johannes Calvin grundade den reformerta kyrkan i Genève år 1536',
-          'Konciliet i Trient reformerade den katolska kyrkan år 1545',
-          'Kungen av England bröt med påven och bildade den anglikanska kyrkan år 1534'
+          "Martin Luther spikade sina 95 teser på kyrkporten i Wittenberg år 1517",
+          "Johannes Calvin grundade den reformerta kyrkan i Genève år 1536",
+          "Konciliet i Trient reformerade den katolska kyrkan år 1545",
+          "Kungen av England bröt med påven och bildade den anglikanska kyrkan år 1534"
         ],
         correct: 0
       },
       {
-        q: 'Vad kritiserade Martin Luther i sina 95 teser?',
+        q: "Vad kritiserade Martin Luther i sina 95 teser?",
         opts: [
-          'Avlatshandeln – att människor med pengar kunde köpa sig fria från sina synder',
-          'Att kyrkan inte tillät präster att gifta sig',
-          'Att mässan firades på latin i stället för folkspråken',
-          'Att påven bodde i Rom i stället för i Jerusalem'
+          "Avlatshandeln – att människor med pengar kunde köpa sig fria från sina synder",
+          "Att kyrkan inte tillät präster att gifta sig",
+          "Att mässan firades på latin i stället för folkspråken",
+          "Att påven bodde i Rom i stället för i Jerusalem"
         ],
         correct: 0
       },
       {
-        q: 'Vad innebar absolutismen och vilket lands kung brukar lyftas fram som det tydligaste exemplet?',
+        q: "Vad innebar absolutismen och vilket lands kung brukar lyftas fram som det tydligaste exemplet?",
         opts: [
-          'Att kungen styrde enväldigt utan parlament – Frankrikes Ludvig XIV är det tydligaste exemplet',
-          'Att kyrkan och kungen delade makten – Englands kung Karl I är exemplet',
-          'Att folket valde sin kung – Sveriges riksdag är exemplet',
-          'Att militären styrde landet – Preussens Fredrik den store är exemplet'
+          "Att kungen styrde enväldigt utan parlament – Frankrikes Ludvig XIV är det tydligaste exemplet",
+          "Att kyrkan och kungen delade makten – Englands kung Karl I är exemplet",
+          "Att folket valde sin kung – Sveriges riksdag är exemplet",
+          "Att militären styrde landet – Preussens Fredrik den store är exemplet"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år valdes Gustav Eriksson Vasa till svensk kung?',
+        q: "Vilket år valdes Gustav Eriksson Vasa till svensk kung?",
         opts: [
-          '1523',
-          '1520',
-          '1527',
-          '1542'
+          "1523",
+          "1520",
+          "1527",
+          "1542"
         ],
         correct: 0
       },
       {
-        q: 'Vad kallas den period i Sveriges historia som inleddes efter Karl XII:s död 1718 och då riksrådet styrde i stället för kungen?',
+        q: "Vad kallas perioden i Sveriges historia efter Karl XII:s död 1718, då enväldet avskaffades och makten flyttades till riksdagen och riksrådet?",
         opts: [
-          'Frihetstiden',
-          'Stormaktstiden',
-          'Vasatiden',
-          'Gustavianska tiden'
+          "Frihetstiden",
+          "Stormaktstiden",
+          "Vasatiden",
+          "Gustavianska tiden"
         ],
         correct: 0
       },
       {
-        q: 'Vilka tre upplysningsfilosofer nämns i boken som de som bar upp upplysningsfilosofin?',
+        q: "Vilka tre tänkare bar upp upplysningsfilosofin?",
         opts: [
-          'Voltaire, Montesquieu och Rousseau',
-          'Sokrates, Platon och Aristoteles',
-          'Copernicus, Kepler och Tycho Brahe',
-          'Luther, Zwingli och Calvin'
+          "Voltaire, Montesquieu och Rousseau",
+          "Sokrates, Platon och Aristoteles",
+          "Copernicus, Kepler och Tycho Brahe",
+          "Luther, Zwingli och Calvin"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år antog Sverige en tryckfrihetslag som undantog alla skrifter från censur – med undantag för skrifter om kyrkan och staten?',
+        q: "Vilket år antog Sverige en tryckfrihetslag som undantog alla skrifter från censur, utom skrifter om kungahuset, kyrkan eller statsskicket?",
         opts: [
-          '1766',
-          '1789',
-          '1721',
-          '1740'
+          "1766",
+          "1789",
+          "1721",
+          "1740"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── RENÄSSANSEN ─────────────────────────────────────────
+  // ── DEN NYA TIDEN – EUROPA ──────────────────────────────
   {
-    id: 'renassansen',
-    name: 'Renässansen och humanismen',
+    id: "nya-tiden-europa",
+    name: "Den nya tiden – Europa",
     questions: [
       {
-        q: 'Vad betyder ordet renässans?',
+        q: "Vilken period kallas tidigmodern tid?",
         opts: [
-          'Pånyttfödelse',
-          'Upplysning',
-          'Frihet',
-          'Erövring'
+          "De första tre århundradena av den nya tiden, från 1500-talet till 1700-talets slut",
+          "De två sista århundradena av medeltiden, 1300- och 1400-talen",
+          "Tiden från franska revolutionen till 1900",
+          "Tiden från 1700-talets slut till första världskriget"
         ],
         correct: 0
       },
       {
-        q: 'I vilket land började renässansen?',
+        q: "Varför ville européerna hitta en sjöväg till Asien?",
         opts: [
-          'Italien',
-          'Frankrike',
-          'England',
-          'Tyskland'
+          "För att slippa frakta siden och kryddor landvägen, där araberna tog ut höga tullar av karavanerna på Sidenvägen",
+          "För att osmanerna hade förbjudit all handel med kryddor i Europa",
+          "För att påven ville att kristendomen skulle spridas till Kina",
+          "För att landvägen över Ryssland var stängd av mongolerna"
         ],
         correct: 0
       },
       {
-        q: 'Vilken rik bankirfamilj i Florens stödde konstnärer och lärde under renässansen?',
+        q: "Vad skilde portugisernas kolonisation från spanjorernas?",
         opts: [
-          'Medici',
-          'Borgia',
-          'Habsburg',
-          'Fugger'
+          "Portugiserna nöjde sig med handelsstationer vid kusterna i stället för att bygga upp ett kolonialvälde",
+          "Portugiserna byggde upp ett välde i Sydamerika, medan spanjorerna nöjde sig med handelsstationer",
+          "Portugiserna for västerut till Amerika, medan spanjorerna for runt Afrika till Indien",
+          "Portugiserna tog inga slavar, till skillnad från spanjorerna"
         ],
         correct: 0
       },
       {
-        q: 'Vad kännetecknar humanismen?',
+        q: "Hur gick triangelhandeln till?",
         opts: [
-          'Ett stort intresse för människan och för antikens texter och idéer',
-          'Tron att människan i första hand är syndig och måste lyda kyrkan',
-          'Tron på att kungen styr genom Guds rätt',
-          'Strävan att återinföra feodalismen'
+          "Textil och metallvaror fraktades till Afrika, slavar över Atlanten och bomull, socker, rom och tobak till Europa",
+          "Slavar fraktades till Europa, textil till Amerika och bomull och socker till Afrika",
+          "Kryddor fraktades från Asien till Afrika, slavar till Europa och silver till Asien",
+          "Bomull och socker fraktades till Afrika, slavar till Europa och textil till Amerika"
         ],
         correct: 0
       },
       {
-        q: 'Vilken uppfinning från 1400-talet gjorde att böcker och idéer kunde spridas snabbt?',
+        q: "Vad betyder ordet reformation?",
         opts: [
-          'Boktryckarkonsten med rörliga bokstäver',
-          'Kompassen',
-          'Kikaren',
-          'Ångmaskinen'
+          "Förnyelse eller förbättring",
+          "Pånyttfödelse",
+          "Upplysning",
+          "Uppror eller revolt"
         ],
         correct: 0
       },
       {
-        q: 'Vilken konstnär och uppfinnare målade Mona Lisa?',
+        q: "Varför lockades många furstar av Luthers budskap?",
         opts: [
-          'Leonardo da Vinci',
-          'Michelangelo',
-          'Rafael',
-          'Botticelli'
+          "De skulle själva kunna bli kyrkans överhuvud och få tillgång till kyrkans rikedomar om påvens makt bröts",
+          "De ville slippa betala avlat för sina synder",
+          "De ville att prästerna skulle få gifta sig",
+          "De ville stödja kejsaren i hans kamp mot påven"
         ],
         correct: 0
       },
       {
-        q: 'Vilken polsk astronom publicerade 1543 teorin att jorden och planeterna kretsar kring solen?',
+        q: "Vad innebar sekulariseringen?",
         opts: [
-          'Nicolaus Copernicus',
-          'Ptolemaios',
-          'Isaac Newton',
-          'Tycho Brahe'
+          "Religionens roll minskade – Gud fick träda tillbaka och tillvaron blev mindre mystisk",
+          "Kyrkan delades i katoliker och protestanter",
+          "Kungarna började styra enväldigt med stöd av kyrkan",
+          "Kyrkans jord drogs in till staten"
         ],
         correct: 0
       },
       {
-        q: 'Vilken metod blev central i den vetenskapliga revolutionen på 1500- och 1600-talen?',
+        q: "Hur brukar 1600-talets kris förklaras?",
         opts: [
-          'Noggranna observationer och experiment',
-          'Att lita på antikens auktoriteter',
-          'Att tolka Bibeln bokstavligt',
-          'Att fråga kungen eller kyrkan'
+          "Krig, praktfulla hov och en växande centralmakt gav höjda skatter och soldatutskrivningar, som ledde till uppror",
+          "Pesten kom tillbaka och dödade en tredjedel av Europas befolkning",
+          "Silvret från Amerika tog slut, så handeln stannade av",
+          "Kyrkan förbjöd de nya vetenskapliga upptäckterna"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vilka konflikter låg bakom trettioåriga kriget?",
+        opts: [
+          "Både striden mellan katoliker och protestanter och mellan kejsaren i Wien, de tyska furstarna och den franske kungen",
+          "Bara striden mellan katoliker och protestanter",
+          "Striden mellan England och Frankrike om den franska tronen",
+          "Striden mellan Spanien och Portugal om kolonierna i Amerika"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad var salongerna under upplysningen?",
+        opts: [
+          "Sammankomster i någons hem där författare och tänkare diskuterade politik och religion",
+          "Kyrkliga möten där prästerna diskuterade den nya vetenskapen",
+          "Politiska församlingar med representanter för de olika stånden",
+          "Uppslagsverk där upplysningstänkarna presenterade ny forskning"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── STORMAKTSTIDEN ──────────────────────────────────────
+  // ── DEN NYA TIDEN – SVERIGE ─────────────────────────────
   {
-    id: 'stormaktstiden',
-    name: 'Sveriges stormaktstid',
+    id: "nya-tiden-sverige",
+    name: "Den nya tiden – Sverige",
     questions: [
       {
-        q: 'Vilka år brukar Sveriges stormaktstid räknas som?',
+        q: "Hur kunde Gustav Eriksson Vasa driva ut den danske kungen Kristian II?",
         opts: [
-          'Ca 1611–1718',
-          'Ca 1523–1611',
-          'Ca 1718–1772',
-          'Ca 1397–1523'
+          "Han fick ekonomiskt och militärt stöd från Lübeck, som ville ha goda handelsavtal med Sverige",
+          "Han fick stöd från påven, som ville straffa Kristian II för Stockholms blodbad",
+          "Han fick stöd från Norge, som ville lämna Kalmarunionen",
+          "Han fick stöd från adeln i Stockholm, som hade lånat ut pengar till kriget"
         ],
         correct: 0
       },
       {
-        q: 'Vilken svensk kung stupade i slaget vid Lützen 1632?',
+        q: "Varför lät Gustav Vasa lägga beslag på stora delar av kyrkans jord och rikedomar?",
         opts: [
-          'Gustav II Adolf',
-          'Karl X Gustav',
-          'Karl XII',
-          'Gustav Vasa'
+          "Kriget mot Kristian hade varit dyrt, kyrkan vägrade låna ut pengar och reformationens idéer gjorde kungen till kyrkans överhuvud",
+          "Påven hade bannlyst honom efter Stockholms blodbad",
+          "Bönderna i Dalarna krävde att kyrkans jord skulle delas ut till dem",
+          "Lübeck krävde kyrkans jord som betalning för sin hjälp"
         ],
         correct: 0
       },
       {
-        q: 'Vilket stort krig utkämpades 1618–1648 och Sverige deltog i det från 1630?',
+        q: "Vad var Dackefejden 1542?",
         opts: [
-          'Trettioåriga kriget',
-          'Hundraårskriget',
-          'Sjuåriga kriget',
-          'Stora nordiska kriget'
+          "Det största bondeupproret i nordisk historia, i Småland",
+          "Ett krig mellan Sverige och Danmark om Gotland",
+          "Ett adelsuppror mot Gustav Vasa i Dalarna",
+          "Ett bondeuppror i Dalarna som stödde Gustav Vasa"
         ],
         correct: 0
       },
       {
-        q: 'Vilken fred år 1648 avslutade trettioåriga kriget?',
+        q: "Vilken svensk kung stupade vid Lützen 1632?",
         opts: [
-          'Westfaliska freden',
-          'Roskildefreden',
-          'Nystadsfreden',
-          'Freden i Brömsebro'
+          "Gustav II Adolf",
+          "Karl X Gustav",
+          "Karl XII",
+          "Gustav Vasa"
         ],
         correct: 0
       },
       {
-        q: 'Vilka landskap fick Sverige av Danmark i Roskildefreden 1658?',
+        q: "Vem införde kungligt envälde i Sverige på en riksdag 1680?",
         opts: [
-          'Skåne, Halland, Blekinge och Bohuslän',
-          'Norrland, Dalarna och Värmland',
-          'Estland, Livland och Ingermanland',
-          'Pommern och Bremen'
+          "Karl XI",
+          "Karl XII",
+          "Gustav II Adolf",
+          "Gustav III"
         ],
         correct: 0
       },
       {
-        q: 'Vilket slag 1709 blev en vändpunkt i stora nordiska kriget, till Sveriges nackdel?',
+        q: "Vad diskuterar historikerna fortfarande om Karl XII:s död 1718?",
         opts: [
-          'Poltava',
-          'Narva',
-          'Lützen',
-          'Lund'
+          "Om han dödades av en norsk kula eller mördades av en svensk soldat",
+          "Om han dog av sjukdom eller dödades i strid",
+          "Om han dödades vid Poltava eller vid Fredriksten",
+          "Om han mördades av en dansk eller en norsk soldat"
         ],
         correct: 0
       },
       {
-        q: 'Vilken fred år 1721 innebar att Sverige förlorade sin stormaktsställning och Ryssland blev ledande i Norden?',
+        q: "Vilka var de första svenska politiska partierna?",
         opts: [
-          'Nystadsfreden',
-          'Roskildefreden',
-          'Westfaliska freden',
-          'Stolbovafreden'
+          "Hattar och mössor",
+          "Kappor och mössor",
+          "Rojalister och republikaner",
+          "Frälse och ofrälse"
         ],
         correct: 0
       },
       {
-        q: 'Vilken kung genomförde reduktionen på 1680-talet, då gods drogs in till kronan?',
+        q: "Hur skilde sig den svenska upplysningen från den franska?",
         opts: [
-          'Karl XI',
-          'Gustav II Adolf',
-          'Karl X Gustav',
-          'Fredrik I'
+          "Den var inte fientligt inställd till kyrkan, utan bars till stora delar upp av prästerskapet",
+          "Den var mer fientlig mot kyrkan och krävde att den skulle avskaffas",
+          "Den bars upp av kungen, inte av författare och tänkare",
+          "Den handlade bara om naturvetenskap och inte om politik"
+        ],
+        correct: 0
+      },
+      {
+        q: "Vad innebar storskiftet?",
+        opts: [
+          "Att många mindre åkerlappar slogs samman till större odlingsenheter, så att skördarna ökade",
+          "Att bönderna fick köpa den jord de arrenderade av kronan",
+          "Att potatisen infördes som ny gröda",
+          "Att kyrkans jord delades upp mellan bönderna"
+        ],
+        correct: 0
+      },
+      {
+        q: "Hur tog frihetstiden slut?",
+        opts: [
+          "Gustav III genomförde en statskupp 1772 som ökade kungens makt",
+          "Gustav III mördades 1772, och riksdagen tog makten",
+          "Karl XI införde envälde på en riksdag 1772",
+          "Revolutionen i Frankrike 1789 spred sig till Sverige"
         ],
         correct: 0
       }
     ]
   },
 
-  // ── UPPLYSNINGEN ────────────────────────────────────────
+  // ── KÄLLOR, KÄLLKRITIK OCH HISTORIEBRUK ─────────────────
   {
-    id: 'upplysningen',
-    name: 'Upplysningen och revolutionerna',
+    id: "kallor",
+    name: "Källor, källkritik och historiebruk",
     questions: [
       {
-        q: 'Vilken händelse den 14 juli 1789 brukar ses som startskottet för franska revolutionen?',
+        q: "Vid utredningen av mordet på Olof Palme fanns både vittnesförhör och tekniska bevis. Vilka av dem är berättande källor?",
         opts: [
-          'Stormningen av Bastiljen',
-          'Ludvig XVI:s avrättning',
-          'Napoleons kröning',
-          'Nationalförsamlingens upplösning'
+          "Vittnesförhören",
+          "Kulorna från mordplatsen",
+          "Blodpölen på marken",
+          "Krutstänken på hans kläder"
         ],
         correct: 0
       },
       {
-        q: 'Vilken upplysningstänkare formulerade idén om maktdelning mellan lagstiftande, verkställande och dömande makt?',
+        q: "När kan böcker som skrivits om Karl XII användas som kvarlevor?",
         opts: [
-          'Montesquieu',
-          'Rousseau',
-          'Voltaire',
-          'Hobbes'
+          "När man undersöker hur synen på kungen har förändrats över tid",
+          "När man vill hämta faktauppgifter om vad kungen gjorde",
+          "När boken skrevs medan kungen levde",
+          "Aldrig – böcker är alltid berättande källor"
         ],
         correct: 0
       },
       {
-        q: 'Vilken upplysningstänkare kämpade för yttrandefrihet och kritiserade intolerans och kyrkans makt?',
+        q: "Vad menas med ett funktionellt källbegrepp?",
         opts: [
-          'Voltaire',
-          'Rousseau',
-          'Descartes',
-          'Luther'
+          "Det är hur historikern väljer att använda materialet som avgör om det är en berättande källa eller en kvarleva",
+          "Det är typen av källa – text eller föremål – som avgör om den är en berättande källa eller en kvarleva",
+          "En källa är bara användbar om den fungerar som bevis i en rättegång",
+          "Alla källor ska behandlas som berättande källor tills motsatsen är bevisad"
         ],
         correct: 0
       },
       {
-        q: 'Vad var Encyklopedin, som gavs ut från 1751 med Diderot som redaktör?',
+        q: "Hur avslöjades att Hitlers dagböcker, som tidningen Stern köpte 1983, var förfalskade?",
         opts: [
-          'Ett stort verk som samlade och spred upplysningens kunskap',
-          'En religiös skrift som försvarade kyrkans lära',
-          'En lagbok för det franska kungariket',
-          'Ett brev från adeln till kungen'
+          "Papperet och bläcket som använts fanns inte under andra världskriget",
+          "Handstilen liknade inte Hitlers",
+          "Förfalskaren erkände direkt när dagböckerna publicerades",
+          "Dagböckerna innehöll händelser som skett efter Hitlers död"
         ],
         correct: 0
       },
       {
-        q: 'Vilket år genomförde Gustav III en statskupp som avslutade frihetstiden?',
+        q: "Varför kan en förfalskning som Sions vises protokoll ändå vara användbar för historiker?",
         opts: [
-          '1772',
-          '1718',
-          '1789',
-          '1809'
+          "Den är en kvarleva från den antijudiska propagandan och kan användas för att undersöka antisemitismens historia",
+          "Den är en trovärdig berättande källa om vad som sades vid den judiska kongressen i Basel",
+          "Den visar hur den ryska polisen arbetade för att skydda judarna",
+          "Den kan inte användas alls, eftersom förfalskningar är värdelösa"
         ],
         correct: 0
       },
       {
-        q: 'Vad menas med upplyst envälde (upplyst despotism)?',
+        q: "Vilka tre moment består den klassiska källkritiken av?",
         opts: [
-          'En härskare som styrde enväldigt men genomförde reformer inspirerade av upplysningen',
-          'Ett styre där folket valde kungen',
-          'Ett styre där adeln delade makten med kungen',
-          'Ett styre där kyrkan hade den högsta makten'
+          "Yttre kritik, tolkning och inre kritik",
+          "Tidssamband, beroende och tendens",
+          "Upphovsman, syfte och ursprung",
+          "Yttre kritik, beroende och tendens"
         ],
         correct: 0
       },
       {
-        q: 'Vilka tillhörde Frankrikes tredje stånd före revolutionen?',
+        q: "Vad gör man i den yttre kritiken?",
         opts: [
-          'Alla som varken var präster eller adel, till exempel borgare, bönder och arbetare',
-          'Enbart de rikaste köpmännen',
-          'Kungens närmaste rådgivare',
-          'Prästerskapets lägre grad'
+          "Man försöker fastställa källans tillkomstsituation: när, var och av vem den kom till, och vilken typ av källa det är",
+          "Man beskriver källans innehåll och försöker förstå vilket budskap den vill förmedla",
+          "Man avgör hur trovärdiga uppgifterna är med hjälp av tid, beroende och tendens",
+          "Man jämför källan med andra källor för att se om de är beroende av varandra"
         ],
         correct: 0
       },
       {
-        q: 'Vad slog den amerikanska självständighetsförklaringen från 1776 bland annat fast?',
+        q: "Vad innebär det att två källor är beroende av varandra?",
         opts: [
-          'Att alla människor är skapade lika och har naturliga rättigheter som liv och frihet',
-          'Att kolonierna skulle få en egen kung',
-          'Att slaveriet skulle avskaffas direkt',
-          'Att kolonierna skulle förbli engelska'
+          "Den ena bygger på den andra, så de kan inte användas för att bekräfta varandras påståenden",
+          "De är skrivna av samma person och är därför extra trovärdiga",
+          "De är vinklade åt olika håll, så uppgifter de är överens om är troligen sanna",
+          "De kommer från samma tid och är därför lika trovärdiga"
+        ],
+        correct: 0
+      },
+      {
+        q: "Varför måste man vara försiktig med Peder Svarts krönika om Gustav Vasa?",
+        opts: [
+          "Han fick i uppdrag av kungen att framställa honom som självuppoffrande och god landsfader",
+          "Han skrev den flera hundra år efter Gustav Vasas död",
+          "Han var dansk och ville svärta ner den svenske kungen",
+          "Han hade aldrig träffat Gustav Vasa och byggde bara på rykten"
+        ],
+        correct: 0
+      },
+      {
+        q: "Olof Palme jämförde 1972 USA:s bombningar av Hanoi med nazisternas massmord i Treblinka. Vilket historiebruk är det?",
+        opts: [
+          "Politiskt-ideologiskt",
+          "Moraliskt",
+          "Existentiellt",
+          "Vetenskapligt"
+        ],
+        correct: 0
+      },
+      {
+        q: "År 1993 firades den svenska historiens år, för att ge svenskar en gemensam historisk identitet i en tid av snabba förändringar. Vilket historiebruk är det?",
+        opts: [
+          "Existentiellt",
+          "Politiskt-ideologiskt",
+          "Kommersiellt",
+          "Moraliskt"
+        ],
+        correct: 0
+      },
+      {
+        q: "Att uppmärksamma Sveriges delaktighet i 1600-talets slavhandel är ett exempel på vilket historiebruk?",
+        opts: [
+          "Moraliskt",
+          "Existentiellt",
+          "Politiskt-ideologiskt",
+          "Icke-bruk"
         ],
         correct: 0
       }
